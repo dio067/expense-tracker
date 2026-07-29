@@ -6,6 +6,6 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Server Running in PORT ${PORT} `);
 });
