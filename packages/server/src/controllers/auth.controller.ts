@@ -9,6 +9,7 @@ import {
 } from "../config";
 import * as bcrypt from "bcrypt";
 import * as jwt from "jsonwebtoken";
+import { error } from "node:console";
 
 const authController = {
   login: async (req: Request, res: Response) => {
@@ -21,7 +22,7 @@ const authController = {
 
       if (!user) {
         return res
-          .status(500)
+          .status(404)
           .json({ ok: false, message: "Email does not exist", data: null });
       }
       const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -66,6 +67,13 @@ const authController = {
           email: user.email,
         },
       });
-    } catch (err) {}
+    } catch (err) {
+      console.error("Login Failed", err);
+      return res.status(500).json({
+        ok: false,
+        message: "Login Failed",
+        data: null,
+      });
+    }
   },
 };
