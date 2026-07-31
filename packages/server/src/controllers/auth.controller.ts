@@ -9,7 +9,6 @@ import {
 } from "../config";
 import * as bcrypt from "bcrypt";
 import * as jwt from "jsonwebtoken";
-import strict from "node:assert/strict";
 
 const authController = {
   login: async (req: Request, res: Response) => {
@@ -58,6 +57,14 @@ const authController = {
         secure: node_env === "production",
         maxAge: 60 * 60 * 24 * 7 * 1000,
         sameSite: "strict",
+      });
+
+      return res.status(200).json({
+        ok: true,
+        data: {
+          userId: user.id,
+          email: user.email,
+        },
       });
     } catch (err) {}
   },
