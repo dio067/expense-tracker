@@ -27,7 +27,7 @@ const authController = {
 
       if (!isPasswordValid) {
         return res
-          .status(500)
+          .status(401)
           .json({ ok: false, message: "Invalid credentials", data: null });
       }
 
