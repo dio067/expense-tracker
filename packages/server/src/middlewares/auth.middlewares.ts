@@ -26,3 +26,5 @@ const authMiddlewares = {
     }
   },
 };
+
+export const { authenticateUser } = authMiddlewares;
