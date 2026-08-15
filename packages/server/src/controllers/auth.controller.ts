@@ -29,7 +29,7 @@ const authController = {
       if (!isPasswordValid) {
         return res
           .status(401)
-          .json({ ok: false, message: "Invalid credentials", data: null });
+          .json({ ok: false, message: "Password Invalid", data: null });
       }
 
       const accessToken = jwt.sign({ userId: user.id }, secret, {
@@ -48,7 +48,7 @@ const authController = {
       res.cookie("accessToken", accessToken, {
         httpOnly: true,
         secure: node_env === "production",
-        maxAge: 15 * 60 * 1000,
+        maxAge: 24 * 60 * 60 * 1000,
         sameSite: "strict",
       });
 
@@ -62,10 +62,7 @@ const authController = {
       return res.status(200).json({
         ok: true,
         message: "Successfully Logged In",
-        data: {
-          userId: user.id,
-          email: user.email,
-        },
+        data: user,
       });
     } catch (err) {
       console.error("Login Failed", err);
@@ -78,7 +75,7 @@ const authController = {
   },
 
   register: async (req: Request, res: Response) => {
-    const { email, password, age } = req.body;
+    const { name, email, password, age } = req.body;
     try {
       const isEmailExist = await prisma.user.findUnique({
         where: { email },
@@ -98,22 +95,47 @@ const authController = {
         data: {
           email,
           password: hashedPassword,
-          age,
+          name,
         },
       });
 
-      res.status(200).json({
+      const accessToken = jwt.sign({ userId: newUser.id }, secret, {
+        expiresIn: secret_expires_in as any,
+      });
+
+      const refreshToken = jwt.sign({ userId: newUser.id }, refresh, {
+        expiresIn: refresh_expires_in as any,
+      });
+
+      await prisma.user.update({
+        where: { email },
+        data: { refreshToken },
+      });
+
+      res.cookie("accessToken", accessToken, {
+        httpOnly: true,
+        secure: node_env === "production",
+        maxAge: 24 * 60 * 60 * 1000,
+        sameSite: "strict",
+      });
+
+      res.cookie("refreshToken", refreshToken, {
+        httpOnly: true,
+        secure: node_env === "production",
+        maxAge: 60 * 60 * 24 * 7 * 1000,
+        sameSite: "strict",
+      });
+      return res.status(200).json({
         ok: true,
         message: "Successfully Registered",
         data: {
           id: newUser.id,
+          name: newUser.name,
           email: newUser.email,
-          age: newUser.age,
         },
       });
     } catch (err) {
-      console.error("Login Failed", err);
-
+      console.error("Register Failed", err);
       return res.status(500).json({
         ok: false,
         message: "Register Failed",
@@ -124,7 +146,7 @@ const authController = {
 
   logout: async (req: Request, res: Response) => {
     try {
-      const userId = (req as any).user?.userId;
+      const userId = (req as any).userId;
 
       if (userId) {
         await prisma.user.update({
@@ -154,7 +176,7 @@ const authController = {
 
   refreshToken: async (req: Request, res: Response) => {
     try {
-      const userId = (req as any).user?.id;
+      const userId = (req as any).userId;
       const refreshToken = req.cookies.refreshToken;
 
       const user = await prisma.user.findUnique({
