@@ -8,13 +8,6 @@ const userController = {
 
       const user = await prisma.user.findUnique({
         where: { id: userId },
-        select: {
-          id: true,
-          email: true,
-          createdAt: true,
-          updatedAt: true,
-          age: true,
-        },
       });
 
       if (!user) {
@@ -26,7 +19,7 @@ const userController = {
       }
       return res.status(200).json({
         ok: true,
-        data: { user },
+        data: user,
         message: "User data fetched successfully",
       });
     } catch (err) {
@@ -38,6 +31,35 @@ const userController = {
       });
     }
   },
+  editUser: async (req: Request, res: Response) => {
+    try {
+      const userId = (req as any).userId;
+      if (!userId) {
+        return res
+          .status(401)
+          .json({ ok: false, message: "Unauthorized", data: null });
+      }
+
+      const { name, income, balance, age } = req.body;
+
+      const user = await prisma.user.update({
+        where: { id: userId },
+        data: { name, income, balance, age },
+      });
+      return res.status(200).json({
+        ok: true,
+        data: user,
+        message: "User data altered successfully",
+      });
+    } catch (err) {
+      console.error("User altering unsuccessful", err);
+      return res.status(500).json({
+        ok: false,
+        message: "User altering unsuccessful",
+        data: null,
+      });
+    }
+  },
 };
 
-export const { getUser } = userController;
+export const { getUser, editUser } = userController;
