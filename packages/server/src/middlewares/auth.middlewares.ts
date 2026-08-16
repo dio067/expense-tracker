@@ -30,3 +30,37 @@ const authMiddlewares = {
       });
     }
   },
+
+  refreshTokenValidation: async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) => {
+    const refreshToken = req.cookies.refreshToken;
+
+    if (!refreshToken) {
+      return res
+        .status(401)
+        .json({ ok: false, message: "No refresh token provided", data: null });
+    }
+    try {
+      const decodedToken = jwt.verify(refreshToken, refresh) as {
+        userId: number;
+      };
+
+      (req as any).userId = decodedToken.userId;
+
+      next();
+    } catch (err) {
+      console.error("Refresh Token authentication failed:", err);
+
+      return res.status(401).json({
+        ok: false,
+        message: "Invalid or expired refresh token",
+        data: null,
+      });
+    }
+  },
+};
+
+export const { authenticateUser, refreshTokenValidation } = authMiddlewares;
