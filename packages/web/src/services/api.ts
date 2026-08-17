@@ -21,3 +21,27 @@ api.interceptors.response.use(
       !originalRequest._retry
     ) {
       originalRequest._retry = true;
+
+      try {
+        await axios.post(
+          `${Config.API_URL}/refresh-token`,
+          {},
+          {
+            withCredentials: true,
+          },
+        );
+        return api(originalRequest);
+      } catch (refreshError) {
+        localStorage.clear();
+        if (!publicPaths.includes(window.location.pathname)) {
+          window.location.href = "/login";
+        }
+        return Promise.reject(refreshError);
+      }
+    }
+
+    return Promise.reject(error);
+  },
+);
+
+export default api;
