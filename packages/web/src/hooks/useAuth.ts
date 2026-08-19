@@ -57,3 +57,67 @@ export const useAuth = () => {
       setIsLoading(false);
     }
   };
+
+  const handleRegister = async (payload: {
+    name: string;
+    email: string;
+    password: string;
+  }) => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const res = await register(payload);
+      setUser({ id: res.id, name: res.name, email: res.email });
+    } catch (err: unknown) {
+      const apiError = err as {
+        response?: { data?: { error?: string } };
+        message?: string;
+      };
+      const msg = apiError.response?.data?.error ?? "Registeration failed";
+      console.log(
+        "ERROR:",
+        JSON.stringify(apiError.response?.data),
+        apiError.message,
+      );
+      setError(msg);
+      throw err;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleLogout = async () => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      await logout();
+      signout();
+    } catch (err: unknown) {
+      const apiError = err as {
+        response?: { data?: { error?: string } };
+        message?: string;
+      };
+      const msg = apiError.response?.data?.error ?? "Logout failed";
+      console.log(
+        "ERROR:",
+        JSON.stringify(apiError.response?.data),
+        apiError.message,
+      );
+      setError(msg);
+      throw err;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return {
+    user,
+    checkAuth,
+    patchUser,
+    handleLogin,
+    handleRegister,
+    handleLogout,
+  };
+};
