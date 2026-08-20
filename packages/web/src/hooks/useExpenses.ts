@@ -49,3 +49,58 @@ export const useExpenses = () => {
   const readExpenses = async () => {
     setIsLoading(true);
     setError(null);
+
+    try {
+      const res = await expenseService.readAll();
+      setExpenses(res.data);
+      return res.data;
+    } catch (err) {
+      console.error(err);
+      setError("Failed to read data");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  const updateExpense = async (id: number, payload: updateExpensePayload) => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const res = await expenseService.update(id, payload);
+      editExpense(id, res.data);
+      return res.data;
+    } catch (err) {
+      console.error(err);
+      setError("Failed to alter data");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  const deleteExpense = async (id: number) => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      await expenseService.delete(id);
+      removeExpense(id);
+    } catch (err) {
+      console.error(err);
+      setError("Failed to delete data");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return {
+    expenses,
+    selectedExpense,
+    isLoading,
+    error,
+    setIsLoading,
+    createExpense,
+    readExpense,
+    readExpenses,
+    updateExpense,
+    deleteExpense,
+  };
+};
