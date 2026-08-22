@@ -110,3 +110,80 @@ export function Expenses() {
           </td>
         </tr>
       ));
+
+  return (
+    <div className='relative min-h-screen p-4 md:p-10 bg-black'>
+      <div className='absolute inset-0 z-0'>
+        <MoltenMetal
+          color1='#0B0D17'
+          color2='#151A2E'
+          color3='#FFFFFF'
+          speed={0.8}
+          scale={4}
+          detail={3}
+          glow={1.6}
+          coreSize={0.1}
+          swirl={1}
+          fold={-0.2}
+          blackPoint={0.05}
+          brightness={1.3}
+          colorMode='molten'
+          grain
+          grainIntensity={0.05}
+          mouseInteraction
+          mouseStrength={0.3}
+          opacity={1}
+        />
+      </div>
+      <div className='mt-16 md:mt-20 relative z-10'>
+        <div className='flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center'>
+          <h1 className='text-white text-2xl md:text-3xl'>All Expenses</h1>
+          <button
+            onClick={() => setModelOpen(true)}
+            className='bg-transparent backdrop-blur-md text-white px-4 py-2 border border-white/20 rounded-3xl hover:-translate-y-2 transition-all cursor-pointer hover:bg-white hover:text-black self-start sm:self-auto'
+          >
+            + Add Expense
+          </button>
+        </div>
+
+        <AddExpenseModel
+          isOpen={modelOpen}
+          onClose={() => setModelOpen(false)}
+          onSubmit={createExpense}
+        />
+        <AlterExpenseModal
+          isOpen={alterOpen}
+          expense={selectedExpense}
+          onClose={() => setAlterOpen(false)}
+          onSubmit={updateExpense}
+          onDelete={deleteExpense}
+        />
+
+        <div className='md:hidden mt-5 space-y-3'>{renderedCards}</div>
+
+        <div className='hidden md:block mt-5'>
+          <table className='w-full text-left border-collapse border-white/20'>
+            <thead>
+              <tr className='border-b border-white/20'>
+                <th className='py-3 px-4 text-sm font-medium text-gray-400 border border-white/20'>
+                  Date
+                </th>
+                <th className='py-3 px-4 text-sm font-medium text-gray-400 border border-white/20'>
+                  Category
+                </th>
+                <th className='py-3 px-4 text-sm font-medium text-gray-400 border border-white/20'>
+                  Description
+                </th>
+                <th className='py-3 px-4 text-sm font-medium text-gray-400 border border-x-none border-white/20'>
+                  Amount
+                </th>
+                <th className='py-3 px-4 text-sm font-medium text-gray-400 border border-white/20'></th>
+              </tr>
+            </thead>
+            <tbody>{renderedRows}</tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+}
