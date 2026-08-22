@@ -255,3 +255,123 @@ export const MoltenMetal: React.FC<MoltenMetalProps> = ({
       renderer.render({ scene: mesh });
       raf = requestAnimationFrame(loop);
     };
+
+    const tryStart = () => {
+      if (isVisible && isPageVisible && raf === 0)
+        raf = requestAnimationFrame(loop);
+    };
+    const tryStop = () => {
+      if (raf !== 0) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
+    };
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          tryStart();
+        } else {
+          tryStop();
+        }
+      },
+      { threshold: 0 },
+    );
+    io.observe(container);
+
+    const onVisibility = () => {
+      isPageVisible = !document.hidden;
+      if (isPageVisible) {
+        tryStart();
+      } else {
+        tryStop();
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
+    tryStart();
+
+    return () => {
+      tryStop();
+      ro.disconnect();
+      io.disconnect();
+      document.removeEventListener("visibilitychange", onVisibility);
+      canvas.removeEventListener("mousemove", handleMouseMove);
+      canvas.removeEventListener("mouseleave", handleMouseLeave);
+      ctxMap.delete(container);
+      try {
+        container.removeChild(canvas);
+      } catch (e: unknown) {
+        // Ignore error if canvas is already removed
+        console.log(e);
+      }
+      gl.getExtension("WEBGL_lose_context")?.loseContext();
+    };
+  }, []);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const ctx = ctxMap.get(container);
+    if (!ctx) return;
+    const u = ctx.program.uniforms;
+
+    u.uSpeed.value = speed;
+    u.uScale.value = scale;
+    u.uDetail.value = detail;
+    u.uGlow.value = glow;
+    u.uCoreSize.value = Math.max(coreSize, 0.001);
+    u.uSwirl.value = swirl;
+    u.uFold.value = fold;
+    u.uBlackPoint.value = blackPoint;
+    u.uBrightness.value = brightness;
+    u.uColorMode.value = colorModeToFloat(colorMode);
+    u.uGrain.value = grain ? 1 : 0;
+    u.uGrainIntensity.value = grainIntensity;
+    u.uOpacity.value = opacity;
+    u.uMouseStrength.value = mouseStrength;
+    u.uEnableMouse.value = mouseInteraction;
+    const c1 = hexToRgb(color1);
+    const c2 = hexToRgb(color2);
+    const c3 = hexToRgb(color3);
+    const uc1 = u.uColor1.value as Float32Array;
+    const uc2 = u.uColor2.value as Float32Array;
+    const uc3 = u.uColor3.value as Float32Array;
+    uc1[0] = c1[0];
+    uc1[1] = c1[1];
+    uc1[2] = c1[2];
+    uc2[0] = c2[0];
+    uc2[1] = c2[1];
+    uc2[2] = c2[2];
+    uc3[0] = c3[0];
+    uc3[1] = c3[1];
+    uc3[2] = c3[2];
+  }, [
+    color1,
+    color2,
+    color3,
+    speed,
+    scale,
+    detail,
+    glow,
+    coreSize,
+    swirl,
+    fold,
+    blackPoint,
+    brightness,
+    colorMode,
+    grain,
+    grainIntensity,
+    mouseInteraction,
+    mouseStrength,
+    opacity,
+  ]);
+
+  return (
+    <div
+      ref={containerRef}
+      className={`relative h-full w-full overflow-hidden ${className}`.trim()}
+    />
+  );
+};
