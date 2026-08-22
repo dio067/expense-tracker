@@ -127,3 +127,131 @@ void main() {
   fragColor = vec4(col * a, a);
 }
 `;
+
+type MoltenMetalCtx = {
+  renderer: InstanceType<typeof Renderer>;
+  program: InstanceType<typeof Program>;
+  mesh: InstanceType<typeof Mesh>;
+};
+const ctxMap = new WeakMap<HTMLDivElement, MoltenMetalCtx>();
+
+export const MoltenMetal: React.FC<MoltenMetalProps> = ({
+  color1 = "#5227FF",
+  color2 = "#FF9FFC",
+  color3 = "#FFFFFF",
+  speed = 0.35,
+  scale = 4,
+  detail = 3,
+  glow = 1.6,
+  coreSize = 0.1,
+  swirl = 1,
+  fold = -0.2,
+  blackPoint = 0.05,
+  brightness = 1.3,
+  colorMode = "molten",
+  grain = true,
+  grainIntensity = 0.05,
+  mouseInteraction = true,
+  mouseStrength = 0.3,
+  opacity = 1.0,
+  className = "",
+}) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const renderer = new Renderer({
+      webgl: 2,
+      alpha: true,
+      premultipliedAlpha: true,
+      antialias: false,
+      dpr: Math.min(window.devicePixelRatio || 1, 2),
+    });
+
+    const gl = renderer.gl;
+    gl.clearColor(0, 0, 0, 0);
+    const canvas = gl.canvas;
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    canvas.style.display = "block";
+    container.appendChild(canvas);
+
+    const geometry = new Triangle(gl);
+    const program = new Program(gl, {
+      vertex,
+      fragment,
+      uniforms: {
+        iTime: { value: 0 },
+        iResolution: { value: new Float32Array([1, 1]) },
+        uSpeed: { value: 0.35 },
+        uScale: { value: 4 },
+        uDetail: { value: 3 },
+        uGlow: { value: 1.6 },
+        uCoreSize: { value: 0.1 },
+        uSwirl: { value: 1 },
+        uFold: { value: -0.2 },
+        uBlackPoint: { value: 0.05 },
+        uBrightness: { value: 1.3 },
+        uColorMode: { value: 0 },
+        uGrain: { value: 1 },
+        uGrainIntensity: { value: 0.05 },
+        uOpacity: { value: 1.0 },
+        uMouse: { value: new Float32Array([0.5, 0.5]) },
+        uMouseStrength: { value: 0.3 },
+        uEnableMouse: { value: true },
+        uColor1: { value: new Float32Array([1, 1, 1]) },
+        uColor2: { value: new Float32Array([1, 1, 1]) },
+        uColor3: { value: new Float32Array([1, 1, 1]) },
+      },
+    });
+
+    const mesh = new Mesh(gl, { geometry, program });
+    ctxMap.set(container, { renderer, program, mesh });
+
+    const setSize = () => {
+      const rect = container.getBoundingClientRect();
+      const w = Math.max(1, Math.floor(rect.width));
+      const h = Math.max(1, Math.floor(rect.height));
+      renderer.setSize(w, h);
+      const res = program.uniforms.iResolution.value as Float32Array;
+      res[0] = gl.drawingBufferWidth;
+      res[1] = gl.drawingBufferHeight;
+      renderer.render({ scene: mesh });
+    };
+
+    const ro = new ResizeObserver(setSize);
+    ro.observe(container);
+    setSize();
+
+    const targetMouse: [number, number] = [0.5, 0.5];
+    const currentMouse: [number, number] = [0.5, 0.5];
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      targetMouse[0] = (e.clientX - rect.left) / rect.width;
+      targetMouse[1] = 1.0 - (e.clientY - rect.top) / rect.height;
+    };
+    const handleMouseLeave = () => {
+      targetMouse[0] = 0.5;
+      targetMouse[1] = 0.5;
+    };
+    canvas.addEventListener("mousemove", handleMouseMove);
+    canvas.addEventListener("mouseleave", handleMouseLeave);
+
+    let raf = 0;
+    let isVisible = true;
+    let isPageVisible = !document.hidden;
+    const t0 = performance.now();
+
+    const loop = (t: number) => {
+      program.uniforms.iTime.value = (t - t0) * 0.001;
+      currentMouse[0] += 0.05 * (targetMouse[0] - currentMouse[0]);
+      currentMouse[1] += 0.05 * (targetMouse[1] - currentMouse[1]);
+      const m = program.uniforms.uMouse.value as Float32Array;
+      m[0] = currentMouse[0];
+      m[1] = currentMouse[1];
+      renderer.render({ scene: mesh });
+      raf = requestAnimationFrame(loop);
+    };
