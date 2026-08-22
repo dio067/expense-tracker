@@ -196,3 +196,93 @@ export function LineWaves({
       }
     }
     window.addEventListener("resize", resize);
+
+    resize();
+
+    const geometry = new Triangle(gl);
+    const rotationRad = (rotation * Math.PI) / 180;
+    program = new Program(gl, {
+      vertex: vertexShader,
+      fragment: fragmentShader,
+      uniforms: {
+        uTime: { value: 0 },
+        uResolution: {
+          value: [
+            gl.canvas.width,
+            gl.canvas.height,
+            gl.canvas.width / gl.canvas.height,
+          ],
+        },
+        uSpeed: { value: speed },
+        uInnerLines: { value: innerLineCount },
+        uOuterLines: { value: outerLineCount },
+        uWarpIntensity: { value: warpIntensity },
+        uRotation: { value: rotationRad },
+        uEdgeFadeWidth: { value: edgeFadeWidth },
+        uColorCycleSpeed: { value: colorCycleSpeed },
+        uBrightness: { value: brightness },
+        uColor1: { value: hexToVec3(color1) },
+        uColor2: { value: hexToVec3(color2) },
+        uColor3: { value: hexToVec3(color3) },
+        uMouse: { value: new Float32Array([0.5, 0.5]) },
+        uMouseInfluence: { value: mouseInfluence },
+        uEnableMouse: { value: enableMouseInteraction },
+      },
+    });
+
+    const mesh = new Mesh(gl, { geometry, program });
+    container.appendChild(gl.canvas);
+
+    if (enableMouseInteraction) {
+      gl.canvas.addEventListener("mousemove", handleMouseMove);
+      gl.canvas.addEventListener("mouseleave", handleMouseLeave);
+    }
+
+    let animationFrameId: number;
+
+    function update(time: number) {
+      animationFrameId = requestAnimationFrame(update);
+      program.uniforms.uTime.value = time * 0.001;
+
+      if (enableMouseInteraction) {
+        currentMouse[0] += 0.05 * (targetMouse[0] - currentMouse[0]);
+        currentMouse[1] += 0.05 * (targetMouse[1] - currentMouse[1]);
+        program.uniforms.uMouse.value[0] = currentMouse[0];
+        program.uniforms.uMouse.value[1] = currentMouse[1];
+      } else {
+        program.uniforms.uMouse.value[0] = 0.5;
+        program.uniforms.uMouse.value[1] = 0.5;
+      }
+
+      renderer.render({ scene: mesh });
+    }
+    animationFrameId = requestAnimationFrame(update);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("resize", resize);
+      if (enableMouseInteraction) {
+        gl.canvas.removeEventListener("mousemove", handleMouseMove);
+        gl.canvas.removeEventListener("mouseleave", handleMouseLeave);
+      }
+      container.removeChild(gl.canvas);
+      gl.getExtension("WEBGL_lose_context")?.loseContext();
+    };
+  }, [
+    speed,
+    innerLineCount,
+    outerLineCount,
+    warpIntensity,
+    rotation,
+    edgeFadeWidth,
+    colorCycleSpeed,
+    brightness,
+    color1,
+    color2,
+    color3,
+    enableMouseInteraction,
+    mouseInfluence,
+  ]);
+
+  return <div ref={containerRef} className='w-full h-full' />;
+}
