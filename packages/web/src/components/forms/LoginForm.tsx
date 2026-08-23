@@ -54,3 +54,73 @@ export function LoginForm() {
             Enter your email and password to sign in.
           </p>
         </div>
+
+        <div className='space-y-5 mt-6'>
+          {" "}
+          <div>
+            <label
+              htmlFor='email'
+              className='text-slate-50 mb-2 font-medium text-sm md:text-base inline-block'
+            >
+              Email
+            </label>
+            <input
+              type='email'
+              name='email'
+              id='email'
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              placeholder='arthur.morgan@example.com'
+              required
+              className='px-3 py-3 text-sm md:text-base text-slate-100 rounded-md bg-transparent backdrop-blur-lg w-full outline-1 outline-slate-700 transition-all'
+            />
+          </div>
+          <div>
+            <label
+              htmlFor='password'
+              className='text-slate-50 mb-2 font-medium text-sm inline-block'
+            >
+              Password
+            </label>
+            <input
+              type='password'
+              name='password'
+              id='password'
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              placeholder='••••••••'
+              required
+              className='px-3 py-3 text-sm text-slate-100 rounded-md bg-transparent backdrop-blur-lg w-full outline-1 outline-slate-700 transition-all'
+            />
+          </div>
+          <button
+            onClick={handleLoginForm}
+            className='py-3 mt-4 w-full text-center text-slate-900 bg-slate-200 rounded-2xl border border-blue-200 hover:bg-gray-500 hover:-translate-y-1 transition-all font-semibold cursor-pointer'
+          >
+            {!isLoading ? (
+              <div>Sign in</div>
+            ) : (
+              <div className='text-center'>
+                <SpinnerBasic />
+              </div>
+            )}
+          </button>
+          <div className='w-full text-red-400 text-center '>{error}</div>
+          <div className='flex items-center gap-4 my-4'>
+            <hr className='w-full border-slate-300 dark:border-neutral-700' />
+            <p className='text-xs text-slate-700 dark:text-slate-300'>or</p>
+            <hr className='w-full border-slate-300 dark:border-neutral-700' />
+          </div>
+          <button className='text-white text-sm w-full'>
+            Don't have an account?{"  "}
+            <Link to='/register' className='text-slate-400 cursor-pointer ml-1'>
+              Sign up
+            </Link>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
