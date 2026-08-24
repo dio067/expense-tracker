@@ -131,3 +131,90 @@ export function Home() {
             <h2 className='text-xl md:text-2xl text-gray-300 mb-4 font-semibold'>
               Recent Transactions
             </h2>
+
+            <ul className='space-y-3'>
+              <li className='flex justify-between text-base md:text-lg'>
+                <span className='text-gray-200'>
+                  {expenses[expenses.length - 1]?.category}
+                </span>
+                <span className='text-gray-200 font-mono'>
+                  {" "}
+                  {expenses[expenses.length - 1]?.amount}$
+                </span>
+              </li>
+              <li className='flex justify-between text-base md:text-lg'>
+                <span className='text-gray-200'>
+                  {" "}
+                  {expenses[expenses.length - 2]?.category}
+                </span>
+                <span className='text-gray-200 font-mono'>
+                  {" "}
+                  {expenses[expenses.length - 2]?.amount}$
+                </span>
+              </li>
+              <li className='flex justify-between text-base md:text-lg'>
+                <span className='text-gray-200'>
+                  {" "}
+                  {expenses[expenses.length - 3]?.category}
+                </span>
+                <span className='text-gray-200 font-mono'>
+                  {" "}
+                  {expenses[expenses.length - 3]?.amount}$
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div className='bg-transparent backdrop-blur-md p-4 md:p-7 border border-white/20 rounded-xl shadow-sm'>
+            <h2 className='text-xl md:text-2xl text-gray-300 mb-4 font-semibold'>
+              Spending by Category
+            </h2>
+
+            <ul className='space-y-3'>
+              <li className='flex justify-between text-base md:text-lg'>
+                <span className='text-gray-200'>Food</span>
+                <span className='text-gray-200 font-mono'>
+                  {Math.round((FOOD_EXPENSES / TOTAL_EXPENSES) * 100)}%
+                </span>
+              </li>
+              <li className='flex justify-between text-base md:text-lg'>
+                <span className='text-gray-200'>Transport</span>
+                <span className='text-gray-200 font-mono'>
+                  {" "}
+                  {Math.round((TRANSPORT_EXPENSE / TOTAL_EXPENSES) * 100)}%
+                </span>
+              </li>
+              <li className='flex justify-between text-base md:text-lg'>
+                <span className='text-gray-200'>Bills</span>
+                <span className='text-gray-200 font-mono'>
+                  {" "}
+                  {Math.round((BILLS_EXPENSES / TOTAL_EXPENSES) * 100)}%
+                </span>
+              </li>
+              <li className='flex justify-between text-base md:text-lg'>
+                <span className='text-gray-200'>Clothes</span>
+                <span className='text-gray-200 font-mono'>
+                  {" "}
+                  {Math.round((CLOTHES_EXPENSES / TOTAL_EXPENSES) * 100)}%
+                </span>
+              </li>
+              <li className='flex justify-between text-base md:text-lg'>
+                <span className='text-gray-200'>Education</span>
+                <span className='text-gray-200 font-mono'>
+                  {" "}
+                  {Math.round((EDUCATION_EXPENSES / TOTAL_EXPENSES) * 100)}%
+                </span>
+              </li>
+              <li className='flex justify-between text-base md:text-lg'>
+                <span className='text-gray-200'>Other</span>
+                <span className='text-gray-200 font-mono'>
+                  {" "}
+                  {Math.round((OTHER_EXPENSES / TOTAL_EXPENSES) * 100)}%
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
