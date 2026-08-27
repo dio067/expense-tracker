@@ -63,3 +63,98 @@ export function Navbar() {
               >
                 profile
               </Link>
+
+              <Link
+                to='/expenses'
+                className={`ml-3 rounded-3xl border border-white/60 px-4 py-2 text-white transition-all hover:-translate-y-1 hover:bg-white hover:text-black ${
+                  isExpensesPage ? "bg-gray-600" : ""
+                }`}
+              >
+                Expenses
+              </Link>
+              <button
+                onClick={async () => {
+                  await handleLogout();
+                }}
+                className={`ml-3 rounded-3xl border border-white/60 px-4 py-2 text-white transition-all hover:-translate-y-1 hover:bg-red-700 cursor-pointer`}
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <div className='hidden md:flex flex-row'>
+              <Link
+                to='/register'
+                className={`ml-3 rounded-3xl border border-white/60 px-4 py-2 text-white transition-all hover:-translate-y-1  hover:bg-white hover:text-gray-900 ${
+                  isRegisterPage ? "bg-gray-600" : ""
+                }`}
+              >
+                Join
+              </Link>
+            </div>
+          )}
+
+          <button
+            className='md:hidden text-white'
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            <svg
+              className='w-6 h-6'
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth='2'
+                d='M4 6h16M4 12h16M4 18h16'
+              ></path>
+            </svg>
+          </button>
+        </div>
+
+        {isOpen && (
+          <div className='md:hidden flex flex-col bg-black/80 backdrop-blur-xl border-t border-white/20'>
+            <Link
+              to='/register'
+              className={`text-white px-4 py-3 text-left hover:bg-white/10 cursor-pointer ${
+                isAuthPage ? "bg-gray-600" : ""
+              }`}
+            >
+              Join
+            </Link>
+            <Link
+              to='/profile'
+              className={`text-white px-4 py-3 text-left hover:bg-white/10 cursor-pointer ${
+                isProilePage ? "bg-gray-600" : ""
+              }`}
+            >
+              profile
+            </Link>
+            <Link
+              to='/contact'
+              className={`text-white px-4 py-3 text-left hover:bg-white/10 cursor-pointer ${
+                isExpensesPage ? "bg-gray-600" : ""
+              }`}
+            >
+              Expenses
+            </Link>
+            {isAuthPage ? (
+              <button
+                onClick={async () => {
+                  await handleLogout();
+                }}
+                className={`text-white px-4 py-3 text-left hover:bg-white/10 cursor-pointer`}
+              >
+                Logout
+              </button>
+            ) : (
+              ""
+            )}
+          </div>
+        )}
+      </div>
+    );
+  }
+}
