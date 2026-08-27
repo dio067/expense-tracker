@@ -47,3 +47,35 @@ export function Landing() {
           </button>
         </div>
       </div>
+
+      <section
+        ref={moreRef}
+        className='relative z-50 min-h-screen flex flex-col items-center justify-center mt-16 md:mt-20 w-full'
+      >
+        <div className='grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-8 w-full max-w-2xl px-4'>
+          <div className='flex justify-center items-center bg-white/5 backdrop-blur-md rounded-xl border border-white/20 p-6 md:p-10'>
+            <DollarSign size={60} className='md:size-[90px] text-white' />
+          </div>
+          <div className='flex justify-center items-center bg-white/5 backdrop-blur-md rounded-xl border border-white/20 p-6 md:p-10'>
+            <Landmark size={60} className='md:size-[90px] text-white' />
+          </div>
+          <div className='flex justify-center items-center bg-white/5 backdrop-blur-md rounded-xl border border-white/20 p-6 md:p-10'>
+            <CreditCard size={60} className='md:size-[90px] text-white' />
+          </div>
+        </div>
+        <p className='text-white/70 font-sans text-base md:text-lg max-w-lg text-center leading-relaxed mb-4'>
+          You already know where your money goes. You just don't want to keep a
+          spreadsheet to prove it. You don't want to sit down on a Sunday night,
+          squinting at a bank statement, trying to remember if that $34 charge
+          was the one you meant to make or the one that sneaked in. You don't
+          want to guess. You don't want to feel like you're always one surprise
+          charge away from "okay, what actually happened to my paycheck this
+          month?" This is the simple, honest way to see it all in one place — no
+          categories to argue with, no weekly ritual to keep up, no guilt trip
+          attached. Just open it, look, and know. That's it. That's the whole
+          point.{" "}
+        </p>
+      </section>
+    </main>
+  );
+}
