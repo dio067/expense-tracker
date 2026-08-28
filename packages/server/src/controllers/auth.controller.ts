@@ -49,14 +49,14 @@ const authController = {
         httpOnly: true,
         secure: node_env === "production",
         maxAge: 24 * 60 * 60 * 1000,
-        sameSite: "strict",
+        sameSite: "none",
       });
 
       res.cookie("refreshToken", refreshToken, {
         httpOnly: true,
         secure: node_env === "production",
         maxAge: 60 * 60 * 24 * 7 * 1000,
-        sameSite: "strict",
+        sameSite: "none",
       });
 
       return res.status(200).json({
@@ -116,14 +116,14 @@ const authController = {
         httpOnly: true,
         secure: node_env === "production",
         maxAge: 24 * 60 * 60 * 1000,
-        sameSite: "strict",
+        sameSite: "none",
       });
 
       res.cookie("refreshToken", refreshToken, {
         httpOnly: true,
         secure: node_env === "production",
         maxAge: 60 * 60 * 24 * 7 * 1000,
-        sameSite: "strict",
+        sameSite: "none",
       });
       return res.status(200).json({
         ok: true,
@@ -207,7 +207,7 @@ const authController = {
         httpOnly: true,
         secure: node_env === "production",
         maxAge: 15 * 60 * 1000,
-        sameSite: "strict",
+        sameSite: "none",
       });
 
       return res.status(200).json({
