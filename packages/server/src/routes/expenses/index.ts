@@ -1,6 +1,6 @@
 import { Router } from "express";
 import expenseRouter from "./expenses.route";
-import { apiLimiter } from "@/middlewares";
+import { apiLimiter } from "../../middlewares";
 
 const router = Router();
 
