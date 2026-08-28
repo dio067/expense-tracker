@@ -5,6 +5,7 @@ import { useExpenseStore } from "@/store/expense.store";
 import { EllipsisVertical } from "lucide-react";
 import { AddExpenseModel } from "@/components/common/AddExpenseModal";
 import { AlterExpenseModal } from "@/components/common/AlterExpenseModal";
+import type { Expense } from "@/types";
 
 export function Expenses() {
   const [modelOpen, setModelOpen] = useState(false);
@@ -27,7 +28,7 @@ export function Expenses() {
     loadExpenses();
   }, []);
 
-  const openAlter = (expense) => {
+  const openAlter = (expense: Expense) => {
     setAlterOpen(true);
     setSelectedExpense(expense);
   };
