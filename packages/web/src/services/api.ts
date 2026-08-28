@@ -14,7 +14,7 @@ api.interceptors.response.use(
     const originalRequest = error.config;
     const isAuthRoute =
       originalRequest?.url?.includes("/login") ||
-      originalRequest?.url?.includes("/refresh-token");
+      originalRequest?.url?.includes("/auth/refresh-token");
     if (
       error.response?.status === 401 &&
       !isAuthRoute &&
@@ -24,7 +24,7 @@ api.interceptors.response.use(
 
       try {
         await axios.post(
-          `${Config.API_URL}/refresh-token`,
+          `${Config.API_URL}/auth/refresh-token`,
           {},
           {
             withCredentials: true,
