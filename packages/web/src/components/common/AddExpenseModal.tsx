@@ -29,7 +29,7 @@ export function AddExpenseModel({
     try {
       await onSubmit({ amount, category, description });
       setAmount(null);
-      setCategory("");
+      setCategory("Food");
       setDescription("");
       setError("");
       onClose();
