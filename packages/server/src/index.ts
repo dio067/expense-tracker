@@ -2,9 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 dotenv.config();
 import cookieParser from "cookie-parser";
-import helmet from "helmet";
 import cors from "cors";
 import { port } from "./config";
+import helmet from "helmet";
 import appRoutes from "./routes";
 const app = express();
 
