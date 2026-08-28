@@ -21,6 +21,8 @@ export function RegisterForm() {
     if (!isValidEmail(email)) return setError("Enter a valid email");
     if (password !== passwordConfirmation)
       return setError("Passwords must match");
+    if (password.length < 8)
+      return setError("Password must be at least 8 characters");
     try {
       await handleRegister({ name, email, password });
       navigate("/dashboard");
