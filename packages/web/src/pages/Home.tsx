@@ -173,42 +173,60 @@ export function Home() {
               <li className='flex justify-between text-base md:text-lg'>
                 <span className='text-gray-200'>Food</span>
                 <span className='text-gray-200 font-mono'>
-                  {Math.round((FOOD_EXPENSES / TOTAL_EXPENSES) * 100)}%
+                  {TOTAL_EXPENSES
+                    ? Math.round((FOOD_EXPENSES / TOTAL_EXPENSES) * 100)
+                    : 0}
+                  %{" "}
                 </span>
               </li>
               <li className='flex justify-between text-base md:text-lg'>
                 <span className='text-gray-200'>Transport</span>
                 <span className='text-gray-200 font-mono'>
                   {" "}
-                  {Math.round((TRANSPORT_EXPENSE / TOTAL_EXPENSES) * 100)}%
+                  {TOTAL_EXPENSES
+                    ? Math.round((TRANSPORT_EXPENSE / TOTAL_EXPENSES) * 100)
+                    : 0}
+                  %{" "}
                 </span>
               </li>
               <li className='flex justify-between text-base md:text-lg'>
                 <span className='text-gray-200'>Bills</span>
                 <span className='text-gray-200 font-mono'>
                   {" "}
-                  {Math.round((BILLS_EXPENSES / TOTAL_EXPENSES) * 100)}%
+                  {TOTAL_EXPENSES
+                    ? Math.round((BILLS_EXPENSES / TOTAL_EXPENSES) * 100)
+                    : 0}
+                  %{" "}
                 </span>
               </li>
               <li className='flex justify-between text-base md:text-lg'>
                 <span className='text-gray-200'>Clothes</span>
                 <span className='text-gray-200 font-mono'>
                   {" "}
-                  {Math.round((CLOTHES_EXPENSES / TOTAL_EXPENSES) * 100)}%
+                  {TOTAL_EXPENSES
+                    ? Math.round((CLOTHES_EXPENSES / TOTAL_EXPENSES) * 100)
+                    : 0}
+                  %{" "}
                 </span>
               </li>
               <li className='flex justify-between text-base md:text-lg'>
                 <span className='text-gray-200'>Education</span>
                 <span className='text-gray-200 font-mono'>
                   {" "}
-                  {Math.round((EDUCATION_EXPENSES / TOTAL_EXPENSES) * 100)}%
+                  {TOTAL_EXPENSES
+                    ? Math.round((EDUCATION_EXPENSES / TOTAL_EXPENSES) * 100)
+                    : 0}
+                  %{" "}
                 </span>
               </li>
               <li className='flex justify-between text-base md:text-lg'>
                 <span className='text-gray-200'>Other</span>
                 <span className='text-gray-200 font-mono'>
                   {" "}
-                  {Math.round((OTHER_EXPENSES / TOTAL_EXPENSES) * 100)}%
+                  {TOTAL_EXPENSES
+                    ? Math.round((OTHER_EXPENSES / TOTAL_EXPENSES) * 100)
+                    : 0}
+                  %{" "}
                 </span>
               </li>
             </ul>
