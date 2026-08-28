@@ -37,4 +37,5 @@ model Expenses {
   category    String
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+  @@index([userId, createdAt])
 }
