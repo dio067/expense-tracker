@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
+import { useAuthStore } from "@/store/auth.store";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +13,7 @@ export function Navbar() {
   const isExpensesPage = pathname === "/expenses";
   const isAuthPage = pathname === "/login" || pathname === "/register";
   const isRootPage = pathname === "/";
+  const { isAuthenticated } = useAuthStore();
   if (isRootPage) {
     return (
       <div className='fixed top-0 left-0 right-0 md:left-60 md:right-60 z-50 border border-white/10  md:mt-4 bg-transparent backdrop-blur-3xl justify-center items-center md:rounded-4xl p-5 '>
@@ -53,7 +55,7 @@ export function Navbar() {
               </h1>
             </Link>
           </div>
-          {!isAuthPage ? (
+          {isAuthenticated ? (
             <div className='hidden md:flex flex-row'>
               <Link
                 to='/profile'
@@ -133,14 +135,14 @@ export function Navbar() {
               profile
             </Link>
             <Link
-              to='/contact'
+              to='/expense'
               className={`text-white px-4 py-3 text-left hover:bg-white/10 cursor-pointer ${
                 isExpensesPage ? "bg-gray-600" : ""
               }`}
             >
               Expenses
             </Link>
-            {isAuthPage ? (
+            {isAuthenticated ? (
               <button
                 onClick={async () => {
                   await handleLogout();
@@ -149,9 +151,7 @@ export function Navbar() {
               >
                 Logout
               </button>
-            ) : (
-              ""
-            )}
+            ) : null}
           </div>
         )}
       </div>
