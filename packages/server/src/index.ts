@@ -21,6 +21,14 @@ app.use(
 
 app.use("/api", appRoutes);
 
+app.use((req, res) =>
+  res.status(404).json({ ok: false, message: "Not found" }),
+);
+app.use((err: any, req: any, res: any, next: any) => {
+  console.error(err);
+  res.status(500).json({ ok: false, message: "Internal server error" });
+});
+
 app.listen(port, async () => {
   console.log(`Server Running in PORT ${port} `);
 });
