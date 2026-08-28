@@ -32,7 +32,7 @@ export function Landing() {
 
         <div className='flex flex-col sm:flex-row gap-3 mt-8 items-center justify-center'>
           <Link
-            to='/'
+            to='/register'
             className='border bg-white text-black font-extrabold px-6 py-3 rounded-3xl hover:bg-white/50 transition'
           >
             Get started
