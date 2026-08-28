@@ -61,8 +61,8 @@ export function AddExpenseModel({
             >
               <option value='Food'>Food</option>
               <option value='Transport'>Transport</option>
-              <option value='Bills'>Clothes</option>
-              <option value='Bills'>Education</option>
+              <option value='Clothes'>Clothes</option>
+              <option value='Education'>Education</option>
               <option value='Bills'>Bills</option>
               <option value='Other'>Other</option>
             </select>
