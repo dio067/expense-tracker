@@ -61,7 +61,11 @@ export const useExpenses = () => {
       setIsLoading(false);
     }
   };
-  const updateExpense = async (id: number, payload: updateExpensePayload) => {
+  const updateExpense = async (
+    id: number | undefined,
+    payload: updateExpensePayload,
+  ) => {
+    if (!id) return;
     setIsLoading(true);
     setError(null);
 
@@ -76,7 +80,8 @@ export const useExpenses = () => {
       setIsLoading(false);
     }
   };
-  const deleteExpense = async (id: number) => {
+  const deleteExpense = async (id: number | undefined) => {
+    if (!id) return;
     setIsLoading(true);
     setError(null);
 
