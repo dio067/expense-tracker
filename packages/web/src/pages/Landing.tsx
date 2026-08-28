@@ -4,7 +4,7 @@ import { LineWaves } from "@/components";
 import { DollarSign, Landmark, CreditCard } from "lucide-react";
 
 export function Landing() {
-  const moreRef = useRef(null);
+  const moreRef = useRef<HTMLDivElement>(null);
   return (
     <main className='relative min-h-screen bg-black px-4 md:px-8 flex flex-col items-center'>
       <div className='fixed inset-0'>
