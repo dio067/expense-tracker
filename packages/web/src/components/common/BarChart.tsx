@@ -20,7 +20,7 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
               {item.value}
             </span>
             <div
-              className='w-full bg-slate-500 rounded-t-sm transition-all duration-500 hover:opacity-80'
+              className='w-full bg-neutral-500 rounded-t-sm transition-all duration-500 hover:opacity-80'
               style={{ height: `${height}%` }}
             />
             <h1 className='mb-1 md:mb-2 mt-1 text-[10px] md:text-sm text-center leading-tight'>

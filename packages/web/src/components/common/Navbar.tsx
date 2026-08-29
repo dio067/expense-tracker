@@ -44,7 +44,7 @@ export function Navbar() {
     );
   } else {
     return (
-      <div className='fixed left-0 top-0 z-50 bg-slate-950/95 w-full backdrop-blur-md border-b border-white/10'>
+      <div className='fixed left-0 top-0 z-50 bg-neutral-950/95 w-full backdrop-blur-md border-b border-white/10'>
         {" "}
         <div className='flex flex-row items-center justify-between p-4 md:p-5'>
           <div className='flex flex-row items-center'>
@@ -60,7 +60,7 @@ export function Navbar() {
             <div className='hidden md:flex flex-row'>
               <Link
                 to='/profile'
-                className={`ml-2 rounded-lg px-4 py-2 text-sm font-medium text-slate-200 transition hover:bg-white/10 ${
+                className={`ml-2 rounded-lg px-4 py-2 text-sm font-medium text-neutral-200 transition hover:bg-white/10 ${
                   isProilePage ? "bg-white/10 text-white" : ""
                 }`}
               >
@@ -68,7 +68,7 @@ export function Navbar() {
               </Link>
               <Link
                 to='/expenses'
-                className={`ml-2 rounded-lg px-4 py-2 text-sm font-medium text-slate-200 transition hover:bg-white/10 ${
+                className={`ml-2 rounded-lg px-4 py-2 text-sm font-medium text-neutral-200 transition hover:bg-white/10 ${
                   isExpensesPage ? "bg-white/10 text-white" : ""
                 }`}
               >
@@ -84,11 +84,11 @@ export function Navbar() {
               </button>
             </div>
           ) : (
-            <div className='md:hidden flex flex-col bg-slate-950 border-t border-white/10'>
+            <div className='md:hidden flex flex-col bg-neutral-950 border-t border-white/10'>
               {" "}
               <Link
                 to='/register'
-                className={`ml-3 rounded-3xl border border-white/60 px-4 py-2 text-white transition-all hover:-translate-y-1  hover:bg-white hover:text-gray-900 ${
+                className={`ml-3 rounded-3xl border border-white/60 px-4 py-2 text-white transition-all hover:-tranneutral-y-1  hover:bg-white hover:text-gray-900 ${
                   isRegisterPage ? "bg-gray-600" : ""
                 }`}
               >

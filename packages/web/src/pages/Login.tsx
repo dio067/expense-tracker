@@ -21,7 +21,7 @@ export function Login() {
           mouseRadius={0.35}
         />
       </div>
-      <div className='absolute inset-0 bg-slate-900/40'></div>
+      <div className='absolute inset-0 bg-neutral-900/40'></div>
       <LoginForm />
     </main>
   );

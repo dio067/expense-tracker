@@ -37,7 +37,7 @@ export function ProfileForm({ user }: { user: User | null }) {
 
   return (
     <div className='flex p-4 md:p-6 min-h-screen items-center justify-center'>
-      <div className='flex flex-col bg-slate-900 backdrop-blur-2xl border border-slate-800 p-4 md:p-5 rounded-2xl w-full max-w-md mt-10'>
+      <div className='flex flex-col bg-neutral-900 backdrop-blur-2xl border border-neutral-800 p-4 md:p-5 rounded-2xl w-full max-w-md mt-10'>
         <div className='flex w-full items-center justify-center m-3'>
           <label className='text-white text-xl font-semibold mb-4'>
             Edit Profile
@@ -47,27 +47,27 @@ export function ProfileForm({ user }: { user: User | null }) {
           <div className='flex flex-row'>
             <UserPen
               color='#ffffff'
-              className='mt-1 text-slate-300'
+              className='mt-1 text-neutral-300'
               size={14}
             />
-            <label className='text-slate-300 ml-2 text-sm font-medium'>
+            <label className='text-neutral-300 ml-2 text-sm font-medium'>
               Name
             </label>
           </div>
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className='border border-slate-700 bg-slate-800 text-base text-white pl-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/30 mt-2'
+            className='border border-neutral-700 bg-neutral-800 text-base text-white pl-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/30 mt-2'
           />
         </div>
         <div className='flex flex-col mb-4'>
           <div className='flex flex-row'>
             <MessageCircleQuestionMark
               color='#ffffff'
-              className='mt-1 text-slate-300'
+              className='mt-1 text-neutral-300'
               size={14}
             />
-            <label className='text-slate-300 ml-2 text-sm font-medium'>
+            <label className='text-neutral-300 ml-2 text-sm font-medium'>
               Age
             </label>
           </div>{" "}
@@ -77,7 +77,7 @@ export function ProfileForm({ user }: { user: User | null }) {
               const value = e.target.value;
               setAge(value === "" ? null : parseInt(value));
             }}
-            className='border border-slate-700 bg-slate-800 text-base text-white pl-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/30 mt-2'
+            className='border border-neutral-700 bg-neutral-800 text-base text-white pl-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/30 mt-2'
           />
         </div>
         <div className='flex flex-col mb-4'>
@@ -85,10 +85,10 @@ export function ProfileForm({ user }: { user: User | null }) {
             {" "}
             <BanknoteArrowUp
               color='#ffffff'
-              className='mt-1 text-slate-300'
+              className='mt-1 text-neutral-300'
               size={14}
             />
-            <label className='text-slate-300 ml-2 text-sm font-medium'>
+            <label className='text-neutral-300 ml-2 text-sm font-medium'>
               Income
             </label>
           </div>{" "}
@@ -98,13 +98,13 @@ export function ProfileForm({ user }: { user: User | null }) {
               const value = e.target.value;
               setIncome(value === "" ? null : parseInt(value));
             }}
-            className='border border-slate-700 bg-slate-800 text-base text-white pl-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/30 mt-2'
+            className='border border-neutral-700 bg-neutral-800 text-base text-white pl-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/30 mt-2'
           />
         </div>
         <div className='flex flex-col mb-4'>
           <div className='flex flex-row'>
-            <Scale color='#ffffff' className='mt-1 text-slate-300' size={14} />
-            <label className='text-slate-300 ml-2 text-sm font-medium'>
+            <Scale color='#ffffff' className='mt-1 text-neutral-300' size={14} />
+            <label className='text-neutral-300 ml-2 text-sm font-medium'>
               Balance
             </label>
           </div>{" "}
@@ -114,7 +114,7 @@ export function ProfileForm({ user }: { user: User | null }) {
               const value = e.target.value;
               setBalance(value === "" ? null : parseInt(value));
             }}
-            className='border border-slate-700 bg-slate-800 text-base text-white pl-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/30 mt-2'
+            className='border border-neutral-700 bg-neutral-800 text-base text-white pl-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/30 mt-2'
           />
         </div>
         <button

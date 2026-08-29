@@ -43,7 +43,7 @@ export function RegisterForm() {
 
   return (
     <div className='relative z-10 py-4 mt-24 w-full max-w-md px-4'>
-      <div className='p-5 md:p-8 bg-slate-900 rounded-2xl border border-slate-800 shadow-xl'>
+      <div className='p-5 md:p-8 bg-neutral-900 rounded-2xl border border-neutral-800 shadow-xl'>
         <div className='mb-4 flex justify-center'>
           <a href='#'>
             <img
@@ -58,7 +58,7 @@ export function RegisterForm() {
           <h1 className='text-white text-2xl md:text-3xl font-semibold mb-2'>
             Welcome back
           </h1>
-          <p className='text-slate-400 text-sm md:text-base'>
+          <p className='text-neutral-400 text-sm md:text-base'>
             Enter your email and password to sign in.
           </p>
         </div>
@@ -67,7 +67,7 @@ export function RegisterForm() {
           <div>
             <label
               htmlFor='name'
-              className='text-slate-50 mb-2 font-medium text-sm md:text-base inline-block'
+              className='text-neutral-50 mb-2 font-medium text-sm md:text-base inline-block'
             >
               Name
             </label>
@@ -79,13 +79,13 @@ export function RegisterForm() {
               }}
               placeholder='Name'
               required
-              className='px-3 py-2.5 text-sm md:text-base text-white rounded-lg bg-slate-800 border border-slate-700 w-full focus:outline-none focus:ring-2 focus:ring-white/30 transition'
+              className='px-3 py-2.5 text-sm md:text-base text-white rounded-lg bg-neutral-800 border border-neutral-700 w-full focus:outline-none focus:ring-2 focus:ring-white/30 transition'
             />
           </div>
           <div>
             <label
               htmlFor='email'
-              className='text-slate-50 mb-2 font-medium text-sm md:text-base inline-block'
+              className='text-neutral-50 mb-2 font-medium text-sm md:text-base inline-block'
             >
               Email
             </label>
@@ -97,13 +97,13 @@ export function RegisterForm() {
               }}
               placeholder='arthur.morgan@example.com'
               required
-              className='px-3 py-2.5 text-sm md:text-base text-white rounded-lg bg-slate-800 border border-slate-700 w-full focus:outline-none focus:ring-2 focus:ring-white/30 transition'
+              className='px-3 py-2.5 text-sm md:text-base text-white rounded-lg bg-neutral-800 border border-neutral-700 w-full focus:outline-none focus:ring-2 focus:ring-white/30 transition'
             />
           </div>
           <div>
             <label
               htmlFor='password'
-              className='text-slate-50 mb-2 font-medium text-sm inline-block'
+              className='text-neutral-50 mb-2 font-medium text-sm inline-block'
             >
               Password
             </label>
@@ -115,13 +115,13 @@ export function RegisterForm() {
               }}
               placeholder='••••••••'
               required
-              className='px-3 py-2.5 text-sm md:text-base text-white rounded-lg bg-slate-800 border border-slate-700 w-full focus:outline-none focus:ring-2 focus:ring-white/30 transition'
+              className='px-3 py-2.5 text-sm md:text-base text-white rounded-lg bg-neutral-800 border border-neutral-700 w-full focus:outline-none focus:ring-2 focus:ring-white/30 transition'
             />
           </div>
           <div>
             <label
               htmlFor='password'
-              className='text-slate-50 mb-2 font-medium text-sm inline-block'
+              className='text-neutral-50 mb-2 font-medium text-sm inline-block'
             >
               Password Confirmation
             </label>
@@ -133,7 +133,7 @@ export function RegisterForm() {
               }}
               placeholder='••••••••'
               required
-              className='px-3 py-2.5 text-sm md:text-base text-white rounded-lg bg-slate-800 border border-slate-700 w-full focus:outline-none focus:ring-2 focus:ring-white/30 transition'
+              className='px-3 py-2.5 text-sm md:text-base text-white rounded-lg bg-neutral-800 border border-neutral-700 w-full focus:outline-none focus:ring-2 focus:ring-white/30 transition'
             />
           </div>
           <button
@@ -151,9 +151,9 @@ export function RegisterForm() {
           <div className='text-red-400 text-center'>{error}</div>
 
           <div className='flex items-center gap-4 my-4'>
-            <hr className='w-full border-slate-300 dark:border-neutral-700' />
-            <p className='text-xs text-slate-700 dark:text-slate-300'>or</p>
-            <hr className='w-full border-slate-300 dark:border-neutral-700' />
+            <hr className='w-full border-neutral-300 dark:border-neutral-700' />
+            <p className='text-xs text-neutral-700 dark:text-neutral-300'>or</p>
+            <hr className='w-full border-neutral-300 dark:border-neutral-700' />
           </div>
 
           <button className='text-white text-sm w-full'>

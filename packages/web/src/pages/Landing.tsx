@@ -55,17 +55,17 @@ export function Landing() {
         className='relative z-50 min-h-screen flex flex-col items-center justify-center mt-16 md:mt-20 w-full'
       >
         <div className='grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-8 w-full max-w-2xl px-4'>
-          <div className='flex justify-center items-center bg-slate-900 border border-slate-800 rounded-lg p-6 md:p-10'>
+          <div className='flex justify-center items-center bg-neutral-900 border border-neutral-800 rounded-lg p-6 md:p-10'>
             <DollarSign size={48} className='text-white' />
           </div>
-          <div className='flex justify-center items-center bg-slate-900 border border-slate-800 rounded-lg p-6 md:p-10'>
+          <div className='flex justify-center items-center bg-neutral-900 border border-neutral-800 rounded-lg p-6 md:p-10'>
             <Landmark size={48} className='text-white' />
           </div>
-          <div className='flex justify-center items-center bg-slate-900 border border-slate-800 rounded-lg p-6 md:p-10'>
+          <div className='flex justify-center items-center bg-neutral-900 border border-neutral-800 rounded-lg p-6 md:p-10'>
             <CreditCard size={48} className='text-white' />
           </div>
         </div>
-        <p className='text-slate-300 font-normal text-base md:text-lg max-w-lg text-center leading-relaxed mb-4'>
+        <p className='text-neutral-300 font-normal text-base md:text-lg max-w-lg text-center leading-relaxed mb-4'>
           {" "}
           You already know where your money goes. You just don't want to keep a
           spreadsheet to prove it. You don't want to sit down on a Sunday night,

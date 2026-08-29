@@ -82,7 +82,7 @@ export function Home() {
           mouseStrength={0.3}
           opacity={1}
         />
-        <div className='absolute inset-0 bg-slate-900/40'></div>
+        <div className='absolute inset-0 bg-neutral-900/40'></div>
       </div>
       <div className='mt-16 md:mt-20 relative z-10'>
         <div className='flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-6'>
@@ -104,26 +104,26 @@ export function Home() {
           onSubmit={createExpense}
         />
         <div className='grid grid-cols-1 md:grid-cols-3 gap-4 mb-6'>
-          <div className='bg-slate-900 rounded-lg p-4 md:p-5 border border-slate-800'>
-            <p className='text-sm text-slate-400'>Total income</p>
+          <div className='bg-neutral-900 rounded-lg p-4 md:p-5 border border-neutral-800'>
+            <p className='text-sm text-neutral-400'>Total income</p>
             <p className='text-xl md:text-2xl font-semibold text-white mt-1'>
               ${user?.income}
             </p>
           </div>
-          <div className='bg-slate-900 rounded-lg p-4 md:p-5 border border-slate-800'>
-            <p className='text-sm text-slate-400'>Total Expenses</p>
+          <div className='bg-neutral-900 rounded-lg p-4 md:p-5 border border-neutral-800'>
+            <p className='text-sm text-neutral-400'>Total Expenses</p>
             <p className='text-xl md:text-2xl font-semibold text-white mt-1'>
               ${TOTAL_EXPENSES}
             </p>
           </div>
-          <div className='bg-slate-900 rounded-lg p-4 md:p-5 border border-slate-800'>
-            <p className='text-sm text-slate-400'>Balance</p>
+          <div className='bg-neutral-900 rounded-lg p-4 md:p-5 border border-neutral-800'>
+            <p className='text-sm text-neutral-400'>Balance</p>
             <p className='text-xl md:text-2xl font-semibold text-white mt-1'>
               ${user?.balance}
             </p>
           </div>
         </div>
-        <div className='bg-slate-900 border border-slate-800 rounded-lg p-4 md:p-5 pb-0 mb-6'>
+        <div className='bg-neutral-900 border border-neutral-800 rounded-lg p-4 md:p-5 pb-0 mb-6'>
           <h2 className='text-lg md:text-xl font-semibold text-white mb-4'>
             Spending Overview
           </h2>
@@ -132,7 +132,7 @@ export function Home() {
           </div>
         </div>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
-          <div className='bg-slate-900 p-4 md:p-6 border border-slate-800 rounded-lg'>
+          <div className='bg-neutral-900 p-4 md:p-6 border border-neutral-800 rounded-lg'>
             <h2 className='text-lg md:text-xl text-white mb-4 font-semibold'>
               Recent Transactions
             </h2>
@@ -140,15 +140,15 @@ export function Home() {
               {recentTransactions.map((tx) => (
                 <li
                   key={tx.id}
-                  className='flex justify-between text-sm md:text-base border-b border-slate-800 pb-2 last:border-0'
+                  className='flex justify-between text-sm md:text-base border-b border-neutral-800 pb-2 last:border-0'
                 >
-                  <span className='text-slate-300'>{tx.category}</span>
+                  <span className='text-neutral-300'>{tx.category}</span>
                   <span className='text-white font-medium'>${tx.amount}</span>
                 </li>
               ))}
             </ul>
           </div>
-          <div className='bg-slate-900 p-4 md:p-6 border border-slate-800 rounded-lg'>
+          <div className='bg-neutral-900 p-4 md:p-6 border border-neutral-800 rounded-lg'>
             <h2 className='text-xl md:text-2xl text-gray-300 mb-4 font-semibold'>
               Spending by Category
             </h2>

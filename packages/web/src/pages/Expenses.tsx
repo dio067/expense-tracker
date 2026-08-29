@@ -37,15 +37,15 @@ export function Expenses() {
           key={i}
           className='border border-white/10 rounded-lg p-4 space-y-2'
         >
-          <div className='h-4 w-full rounded bg-slate-800 animate-pulse' />
-          <div className='h-4 w-full rounded bg-slate-800 animate-pulse' />
-          <div className='h-4 w-full rounded bg-slate-800 animate-pulse' />
+          <div className='h-4 w-full rounded bg-neutral-800 animate-pulse' />
+          <div className='h-4 w-full rounded bg-neutral-800 animate-pulse' />
+          <div className='h-4 w-full rounded bg-neutral-800 animate-pulse' />
         </div>
       ))
     : expenses.map((expense) => (
         <div
           key={expense.id}
-          className='bg-slate-900 border border-slate-800 rounded-lg p-4'
+          className='bg-neutral-900 border border-neutral-800 rounded-lg p-4'
         >
           {" "}
           <div className='flex justify-between items-start'>
@@ -75,16 +75,16 @@ export function Expenses() {
     ? Array.from({ length: 9 }).map((_, i) => (
         <tr key={i} className='border border-white/10'>
           <td className='py-3 px-4 border border-white/10'>
-            <div className='h-4 w-full rounded bg-slate-800 animate-pulse' />{" "}
+            <div className='h-4 w-full rounded bg-neutral-800 animate-pulse' />{" "}
           </td>
           <td className='py-3 px-4 border border-white/10'>
-            <div className='h-4 w-full rounded bg-slate-800 animate-pulse' />{" "}
+            <div className='h-4 w-full rounded bg-neutral-800 animate-pulse' />{" "}
           </td>
           <td className='py-3 px-4 border border-white/10'>
-            <div className='h-4 w-full rounded bg-slate-800 animate-pulse' />{" "}
+            <div className='h-4 w-full rounded bg-neutral-800 animate-pulse' />{" "}
           </td>
           <td className='py-3 px-4 border border-white/10'>
-            <div className='h-4 w-full rounded bg-slate-800 animate-pulse' />{" "}
+            <div className='h-4 w-full rounded bg-neutral-800 animate-pulse' />{" "}
           </td>
           <td className='py-3 px-4 border border-white/10'></td>
         </tr>
@@ -92,23 +92,23 @@ export function Expenses() {
     : expenses.map((expense) => (
         <tr
           key={expense.id}
-          className='border-b border-slate-800 hover:bg-white/5 transition'
+          className='border-b border-neutral-800 hover:bg-white/5 transition'
         >
-          <td className='py-3 px-4 text-slate-300 font-mono text-sm'>
+          <td className='py-3 px-4 text-neutral-300 font-mono text-sm'>
             {new Date(expense.createdAt).toLocaleDateString()}
           </td>
           <td className='py-3 px-4'>
-            <span className='inline-block px-2 py-1 rounded-md bg-slate-800 text-slate-200 text-xs font-medium'>
+            <span className='inline-block px-2 py-1 rounded-md bg-neutral-800 text-neutral-200 text-xs font-medium'>
               {expense.category}
             </span>
           </td>
-          <td className='py-3 px-4 text-slate-300 text-sm'>
+          <td className='py-3 px-4 text-neutral-300 text-sm'>
             {expense.description}
           </td>
           <td className='py-3 px-4 text-left font-mono text-red-400'>
             -{expense.amount}
           </td>
-          <td className='py-3 px-4 text-slate-300'>
+          <td className='py-3 px-4 text-neutral-300'>
             <button
               onClick={() => openAlter(expense)}
               className='hover:text-white cursor-pointer'
@@ -142,7 +142,7 @@ export function Expenses() {
           mouseStrength={0.3}
           opacity={1}
         />
-        <div className='absolute inset-0 bg-slate-900/40'></div>
+        <div className='absolute inset-0 bg-neutral-900/40'></div>
       </div>
       <div className='mt-16 md:mt-20 relative z-10'>
         <div className='flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center'>
@@ -175,20 +175,20 @@ export function Expenses() {
         <div className='hidden md:block mt-5'>
           <table className='w-full text-left border-collapse'>
             <thead>
-              <tr className='border-b border-slate-800'>
-                <th className='py-3 px-4 text-sm font-medium text-slate-400'>
+              <tr className='border-b border-neutral-800'>
+                <th className='py-3 px-4 text-sm font-medium text-neutral-400'>
                   Date
                 </th>
-                <th className='py-3 px-4 text-sm font-medium text-slate-400'>
+                <th className='py-3 px-4 text-sm font-medium text-neutral-400'>
                   Category
                 </th>
-                <th className='py-3 px-4 text-sm font-medium text-slate-400'>
+                <th className='py-3 px-4 text-sm font-medium text-neutral-400'>
                   Description
                 </th>
-                <th className='py-3 px-4 text-sm font-medium text-slate-400'>
+                <th className='py-3 px-4 text-sm font-medium text-neutral-400'>
                   Amount
                 </th>
-                <th className='py-3 px-4 text-sm font-medium text-slate-400'></th>
+                <th className='py-3 px-4 text-sm font-medium text-neutral-400'></th>
               </tr>
             </thead>
             <tbody>{renderedRows}</tbody>

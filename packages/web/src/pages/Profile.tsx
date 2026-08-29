@@ -28,7 +28,7 @@ export function Profile() {
           opacity={1}
         />
       </div>
-      <div className='absolute inset-0 bg-slate-900/40'></div>
+      <div className='absolute inset-0 bg-neutral-900/40'></div>
 
       <ProfileForm user={user} />
     </div>
