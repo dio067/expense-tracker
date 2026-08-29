@@ -1,4 +1,4 @@
-import express from "express";
+import express, { type ErrorRequestHandler } from "express";
 import dotenv from "dotenv";
 dotenv.config();
 import cookieParser from "cookie-parser";
@@ -6,6 +6,7 @@ import cors from "cors";
 import { port } from "./config";
 import helmet from "helmet";
 import appRoutes from "./routes";
+
 const app = express();
 
 app.set("trust proxy", 1);
@@ -25,10 +26,14 @@ app.use("/api", appRoutes);
 app.use((req, res) =>
   res.status(404).json({ ok: false, message: "Not found" }),
 );
-app.use((err: any, req: any, res: any, next: any) => {
+
+const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
   console.error(err);
-  res.status(500).json({ ok: false, message: "Internal server error" });
-});
+  res
+    .status(500)
+    .json({ ok: false, message: "Internal server error", data: null });
+};
+app.use(errorHandler);
 
 app.listen(port, async () => {
   console.log(`Server Running in PORT ${port} `);
