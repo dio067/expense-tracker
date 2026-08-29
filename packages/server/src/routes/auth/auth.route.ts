@@ -6,7 +6,7 @@ import {
   validate,
 } from "../../middlewares";
 import { login, logout, refreshToken, register } from "../../controllers";
-import { loginSchema, registerSchema } from "@/schemas/auth.schema";
+import { loginSchema, registerSchema } from "../../schemas/auth.schema";
 
 const router = Router();
 

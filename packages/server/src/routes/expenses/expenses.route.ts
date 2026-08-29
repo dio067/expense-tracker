@@ -11,7 +11,7 @@ import { Router } from "express";
 import {
   createExpenseSchema,
   updateExpenseSchema,
-} from "@/schemas/expenses.schema";
+} from "../../schemas/expenses.schema";
 
 const router = Router();
 

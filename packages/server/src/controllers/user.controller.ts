@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 import prisma from "../lib/prisma";
-import { toPublicUser } from "@/lib";
+import { toPublicUser } from "../lib";
 
 const userController = {
   getUser: async (req: Request, res: Response) => {
