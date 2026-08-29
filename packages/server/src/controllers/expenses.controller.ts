@@ -26,12 +26,18 @@ const expenseController = {
     }
   },
   getExpense: async (req: Request, res: Response) => {
-    const { id } = (req as any).params;
     const userId = (req as any).userId;
+    const idParam = Number(req.params.id);
+
+    if (!Number.isInteger(idParam)) {
+      return res
+        .status(400)
+        .json({ ok: false, message: "Invalid expense id", data: null });
+    }
 
     try {
       const expense = await prisma.expenses.findUnique({
-        where: { id: parseInt(id), userId },
+        where: { id: idParam, userId },
       });
 
       return res.status(200).json({
@@ -76,12 +82,18 @@ const expenseController = {
   },
 
   deleteExpense: async (req: Request, res: Response) => {
-    const { id } = (req as any).params;
     const userId = (req as any).userId;
+
+    const idParam = Number(req.params.id);
+    if (!Number.isInteger(idParam)) {
+      return res
+        .status(400)
+        .json({ ok: false, message: "Invalid expense id", data: null });
+    }
 
     try {
       const expense = await prisma.expenses.delete({
-        where: { id: parseInt(id), userId },
+        where: { id: idParam, userId },
       });
 
       return res.status(200).json({
@@ -99,13 +111,19 @@ const expenseController = {
   },
 
   updateExpense: async (req: Request, res: Response) => {
-    const { id } = (req as any).params;
     const { description, amount, category } = req.body;
     const userId = (req as any).userId;
+    const idParam = Number(req.params.id);
+
+    if (!Number.isInteger(idParam)) {
+      return res
+        .status(400)
+        .json({ ok: false, message: "Invalid expense id", data: null });
+    }
 
     try {
       const expense = await prisma.expenses.update({
-        where: { id: parseInt(id), userId },
+        where: { id: idParam, userId },
         data: {
           description,
           amount,
