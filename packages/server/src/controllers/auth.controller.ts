@@ -205,6 +205,21 @@ const authController = {
         maxAge: 15 * 60 * 1000,
         sameSite: "none",
       });
+      const newRefreshToken = jwt.sign({ userId: user.id }, refresh, {
+        expiresIn: refresh_expires_in as any,
+      });
+
+      await prisma.user.update({
+        where: { id: user.id },
+        data: { refreshToken: newRefreshToken },
+      });
+
+      res.cookie("refreshToken", newRefreshToken, {
+        httpOnly: true,
+        secure: node_env === "production",
+        maxAge: 60 * 60 * 24 * 7 * 1000,
+        sameSite: node_env === "production" ? "none" : "lax",
+      });
 
       return res.status(200).json({
         ok: true,
