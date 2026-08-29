@@ -5,7 +5,7 @@ interface BarChartProps {
 }
 
 const BarChart: React.FC<BarChartProps> = ({ data }) => {
-  const max = Math.max(...data.map((d) => d.value));
+  const max = Math.max(1, ...data.map((d) => d.value));
 
   return (
     <div className='w-full h-full flex items-end gap-1 md:gap-2'>
