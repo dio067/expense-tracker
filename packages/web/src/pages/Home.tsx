@@ -27,6 +27,12 @@ export function Home() {
   let EDUCATION_EXPENSES = 0;
   let BILLS_EXPENSES = 0;
   let OTHER_EXPENSES = 0;
+  const recentTransactions = [...expenses]
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+    )
+    .slice(0, 3);
 
   expenses.map((expense) => {
     TOTAL_EXPENSES = TOTAL_EXPENSES + (expense.amount ?? 0);
@@ -133,35 +139,15 @@ export function Home() {
             </h2>
 
             <ul className='space-y-3'>
-              <li className='flex justify-between text-base md:text-lg'>
-                <span className='text-gray-200'>
-                  {expenses[expenses.length - 1]?.category}
-                </span>
-                <span className='text-gray-200 font-mono'>
-                  {" "}
-                  {expenses[expenses.length - 1]?.amount}$
-                </span>
-              </li>
-              <li className='flex justify-between text-base md:text-lg'>
-                <span className='text-gray-200'>
-                  {" "}
-                  {expenses[expenses.length - 2]?.category}
-                </span>
-                <span className='text-gray-200 font-mono'>
-                  {" "}
-                  {expenses[expenses.length - 2]?.amount}$
-                </span>
-              </li>
-              <li className='flex justify-between text-base md:text-lg'>
-                <span className='text-gray-200'>
-                  {" "}
-                  {expenses[expenses.length - 3]?.category}
-                </span>
-                <span className='text-gray-200 font-mono'>
-                  {" "}
-                  {expenses[expenses.length - 3]?.amount}$
-                </span>
-              </li>
+              {recentTransactions.map((tx) => (
+                <li
+                  key={tx.id}
+                  className='flex justify-between text-base md:text-lg'
+                >
+                  <span className='text-gray-200'>{tx.category}</span>
+                  <span className='text-gray-200 font-mono'>{tx.amount}$</span>
+                </li>
+              ))}
             </ul>
           </div>
           <div className='bg-transparent backdrop-blur-md p-4 md:p-7 border border-white/20 rounded-xl shadow-sm'>
