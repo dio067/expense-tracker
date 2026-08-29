@@ -2,10 +2,12 @@ import { Request, Response } from "express";
 import { toPublicUser, prisma } from "../lib";
 import {
   refresh,
-  refresh_expires_in,
   secret,
   secret_expires_in,
+  refresh_expires_in,
   node_env,
+  ACCESS_TOKEN_MAX_AGE_MS,
+  REFRESH_TOKEN_MAX_AGE_MS,
 } from "../config";
 import * as bcrypt from "bcrypt";
 import * as jwt from "jsonwebtoken";
@@ -55,13 +57,13 @@ const authController = {
       res.cookie(
         "accessToken",
         accessToken,
-        cookieOptions(24 * 60 * 60 * 1000),
+        cookieOptions(ACCESS_TOKEN_MAX_AGE_MS),
       );
 
       res.cookie(
         "refreshToken",
         refreshToken,
-        cookieOptions(60 * 60 * 24 * 7 * 1000),
+        cookieOptions(REFRESH_TOKEN_MAX_AGE_MS),
       );
 
       return res.status(200).json({
@@ -120,13 +122,13 @@ const authController = {
       res.cookie(
         "accessToken",
         accessToken,
-        cookieOptions(24 * 60 * 60 * 1000),
+        cookieOptions(ACCESS_TOKEN_MAX_AGE_MS),
       );
 
       res.cookie(
         "refreshToken",
         refreshToken,
-        cookieOptions(60 * 60 * 24 * 7 * 1000),
+        cookieOptions(REFRESH_TOKEN_MAX_AGE_MS),
       );
 
       return res.status(200).json({
@@ -206,7 +208,7 @@ const authController = {
       res.cookie(
         "accessToken",
         newAccessToken,
-        cookieOptions(24 * 60 * 60 * 1000),
+        cookieOptions(ACCESS_TOKEN_MAX_AGE_MS),
       );
 
       const newRefreshToken = jwt.sign({ userId: user.id }, refresh, {
@@ -221,7 +223,7 @@ const authController = {
       res.cookie(
         "refreshToken",
         newRefreshToken,
-        cookieOptions(60 * 60 * 24 * 7 * 1000),
+        cookieOptions(REFRESH_TOKEN_MAX_AGE_MS),
       );
 
       return res.status(200).json({
