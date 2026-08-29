@@ -1,8 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Signup, Login, NotFound, Expenses, Home, Landing } from "@/pages";
+import {
+  Signup,
+  Login,
+  NotFound,
+  Expenses,
+  Home,
+  Landing,
+  Profile,
+} from "@/pages";
 import { useAuth } from "./hooks/useAuth";
 import { Navbar } from "@/components";
-import { Profile } from "./pages/Profile";
 import { ProtectedRoute } from "./components/routes/ProtectedRoute";
 import { useEffect } from "react";
 

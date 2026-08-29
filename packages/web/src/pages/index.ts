@@ -4,3 +4,4 @@ export * from "./Login";
 export * from "./Expenses";
 export * from "./NotFound";
 export * from "./Landing";
+export * from "./Profile";

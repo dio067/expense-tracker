@@ -1,5 +1,5 @@
 import { MoltenMetal } from "@/components";
-import { ProfileForm } from "@/components/forms/ProfileForm";
+import { ProfileForm } from "@/components";
 import { useAuth } from "@/hooks/useAuth";
 
 export function Profile() {
