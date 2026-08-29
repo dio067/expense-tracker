@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
-import { MoltenMetal } from "@/components";
 import { useExpenses } from "@/hooks/useExpenses";
 import { useExpenseStore } from "@/store/expense.store";
 import { EllipsisVertical } from "lucide-react";
-import { AddExpenseModel } from "@/components/common/AddExpenseModal";
-import { AlterExpenseModal } from "@/components/common/AlterExpenseModal";
+import { AddExpenseModal, AlterExpenseModal, MoltenMetal } from "@/components";
 import type { Expense } from "@/types";
 
 export function Expenses() {
@@ -147,7 +145,7 @@ export function Expenses() {
           </button>
         </div>
 
-        <AddExpenseModel
+        <AddExpenseModal
           isOpen={modelOpen}
           onClose={() => setModelOpen(false)}
           onSubmit={createExpense}
