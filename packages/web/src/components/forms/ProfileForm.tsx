@@ -37,33 +37,39 @@ export function ProfileForm({ user }: { user: User | null }) {
 
   return (
     <div className='flex p-4 md:p-6 min-h-screen items-center justify-center'>
-      <div className='flex flex-col bg-transparent backdrop-blur-2xl border border-white/30 p-4 md:p-5 rounded-2xl w-full max-w-md mt-10'>
+      <div className='flex flex-col bg-slate-900 backdrop-blur-2xl border border-slate-800 p-4 md:p-5 rounded-2xl w-full max-w-md mt-10'>
         <div className='flex w-full items-center justify-center m-3'>
-          <label className='text-white m-2 text-xl md:text-2xl'>
-            Profile Editor
+          <label className='text-white text-xl font-semibold mb-4'>
+            Edit Profile
           </label>
         </div>
         <div className='flex flex-col mb-4'>
           <div className='flex flex-row'>
-            <UserPen color='#ffffff' className='mt-3.5' size={18} />
-            <label className='text-white m-2 text-xl md:text-2xl'>Name</label>
+            <UserPen
+              color='#ffffff'
+              className='mt-1 text-slate-300'
+              size={14}
+            />
+            <label className='text-slate-300 ml-2 text-sm font-medium'>
+              Name
+            </label>
           </div>
           <input
             value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-            className='border border-white/20 text-lg md:text-xl py-2 text-white pl-3 rounded-2xl focus:outline-none'
+            onChange={(e) => setName(e.target.value)}
+            className='border border-slate-700 bg-slate-800 text-base text-white pl-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/30 mt-2'
           />
         </div>
         <div className='flex flex-col mb-4'>
           <div className='flex flex-row'>
             <MessageCircleQuestionMark
               color='#ffffff'
-              className='mt-3.5'
-              size={18}
+              className='mt-1 text-slate-300'
+              size={14}
             />
-            <label className='text-white m-2 text-xl md:text-2xl'>Age</label>
+            <label className='text-slate-300 ml-2 text-sm font-medium'>
+              Age
+            </label>
           </div>{" "}
           <input
             value={age ?? ""}
@@ -71,13 +77,20 @@ export function ProfileForm({ user }: { user: User | null }) {
               const value = e.target.value;
               setAge(value === "" ? null : parseInt(value));
             }}
-            className='border border-white/20 text-lg md:text-xl text-white pl-3 py-2 rounded-2xl focus:outline-none'
+            className='border border-slate-700 bg-slate-800 text-base text-white pl-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/30 mt-2'
           />
         </div>
         <div className='flex flex-col mb-4'>
           <div className='flex flex-row'>
-            <BanknoteArrowUp color='#ffffff' className='mt-3.5' size={18} />
-            <label className='text-white m-2 text-xl md:text-2xl'>Income</label>
+            {" "}
+            <BanknoteArrowUp
+              color='#ffffff'
+              className='mt-1 text-slate-300'
+              size={14}
+            />
+            <label className='text-slate-300 ml-2 text-sm font-medium'>
+              Income
+            </label>
           </div>{" "}
           <input
             value={income ?? ""}
@@ -85,13 +98,13 @@ export function ProfileForm({ user }: { user: User | null }) {
               const value = e.target.value;
               setIncome(value === "" ? null : parseInt(value));
             }}
-            className='border border-white/20 text-lg md:text-xl text-white pl-3 py-2 rounded-2xl focus:outline-none'
+            className='border border-slate-700 bg-slate-800 text-base text-white pl-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/30 mt-2'
           />
         </div>
         <div className='flex flex-col mb-4'>
           <div className='flex flex-row'>
-            <Scale color='#ffffff' className='mt-3.5' size={18} />
-            <label className='text-white m-2 text-xl md:text-2xl'>
+            <Scale color='#ffffff' className='mt-1 text-slate-300' size={14} />
+            <label className='text-slate-300 ml-2 text-sm font-medium'>
               Balance
             </label>
           </div>{" "}
@@ -101,24 +114,21 @@ export function ProfileForm({ user }: { user: User | null }) {
               const value = e.target.value;
               setBalance(value === "" ? null : parseInt(value));
             }}
-            className='border border-white/20 text-lg md:text-xl text-white pl-3 py-2 rounded-2xl focus:outline-none'
+            className='border border-slate-700 bg-slate-800 text-base text-white pl-3 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/30 mt-2'
           />
         </div>
         <button
           onClick={handleEditProfile}
-          className='bg-white px-4 py-2 text-black border border-white/20 font-semibold rounded-2xl m-4 cursor-pointer hover:bg-white/40 hover:text-black/80'
+          className='bg-white px-4 py-2.5 text-black font-semibold rounded-lg mt-4 cursor-pointer hover:bg-gray-200 transition'
         >
-          Edit
+          Save changes
         </button>
         <div className='flex justify-center items-center m-2 text-red-300 hover:text-red-900'>
-          <Trash2 className='m-2' size={15} />
           <button
-            onClick={() => {
-              navigate("/dashboard");
-            }}
-            className='font-semibold rounded-2xl mt-1 cursor-pointer'
+            onClick={() => navigate("/dashboard")}
+            className='flex items-center justify-center gap-2 mt-3 text-sm text-red-400 hover:text-red-300 cursor-pointer transition'
           >
-            Cancel
+            <Trash2 size={15} /> Cancel
           </button>
         </div>
       </div>
