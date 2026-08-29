@@ -113,7 +113,8 @@ export function AlterExpenseModal({
             <input
               value={amount ?? ""}
               onChange={(e) => {
-                setAmount(parseInt(e.target.value));
+                const raw = e.target.value;
+                setAmount(raw === "" ? null : Number(raw));
               }}
               type='number'
               className='bg-black/60 w-full md:w-96 rounded-xl text-sm md:text-base m-2 md:m-4 text-white border border-white/20 p-2 px-4 pl-10 focus:outline-none placeholder:text-sm md:placeholder:text-base font-mono placeholder:font-pixelify'
