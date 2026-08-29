@@ -56,10 +56,10 @@ export function RegisterForm() {
 
         <div className='text-center'>
           <h1 className='text-white text-2xl md:text-3xl font-semibold mb-2'>
-            Welcome back
+            Create your account
           </h1>
           <p className='text-neutral-400 text-sm md:text-base'>
-            Enter your email and password to sign in.
+            Enter your details to sign up.
           </p>
         </div>
 

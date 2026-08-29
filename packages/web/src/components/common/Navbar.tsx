@@ -26,7 +26,7 @@ export function Navbar() {
             />
             <Link to='/dashboard'>
               {" "}
-              <h1 className='text-white ml-3 text-lg md:text-xl font-semibold'>
+              <h1 className='text-white ml-3 text-xl md:text-xl hover:text-white/50'>
                 Expense Tracker
               </h1>
             </Link>
@@ -34,9 +34,9 @@ export function Navbar() {
           <div className='flex flex-row justify-end'>
             <Link
               to='/register'
-              className='ml-3 rounded-lg bg-white px-4 py-2 text-black font-medium text-sm transition hover:bg-gray-200'
+              className={`ml-3 rounded-3xl border border-white/60 px-4 py-2 text-white transition-all hover:-translate-y-1 hover:bg-white hover:text-black `}
             >
-              Join
+              join
             </Link>
           </div>
         </div>
@@ -44,8 +44,7 @@ export function Navbar() {
     );
   } else {
     return (
-      <div className='fixed left-0 top-0 z-50 bg-neutral-950/95 w-full backdrop-blur-md border-b border-white/10'>
-        {" "}
+      <div className='fixed left-0 top-0 z-50 bg-black/40 w-full backdrop-blur-md border-b border-white/30'>
         <div className='flex flex-row items-center justify-between p-4 md:p-5'>
           <div className='flex flex-row items-center'>
             <img src='/images/navbar.logo.png' className='h-8 w-auto md:h-9' />
@@ -60,16 +59,21 @@ export function Navbar() {
             <div className='hidden md:flex flex-row'>
               <Link
                 to='/profile'
-                className={`ml-2 rounded-lg px-4 py-2 text-sm font-medium text-neutral-200 transition hover:bg-white/10 ${
-                  isProilePage ? "bg-white/10 text-white" : ""
+                className={`ml-3 rounded-3xl border border-white/60 px-4 py-2 text-white transition-all hover:-translate-y-1 hover:bg-white hover:text-black ${
+                  isProilePage
+                    ? "bg-emerald-500/10 border-emerald-500/40 text-emerald-400"
+                    : ""
                 }`}
               >
-                Profile
+                profile
               </Link>
+
               <Link
                 to='/expenses'
-                className={`ml-2 rounded-lg px-4 py-2 text-sm font-medium text-neutral-200 transition hover:bg-white/10 ${
-                  isExpensesPage ? "bg-white/10 text-white" : ""
+                className={`ml-3 rounded-3xl border border-white/60 px-4 py-2 text-white transition-all hover:-translate-y-1 hover:bg-white hover:text-black ${
+                  isExpensesPage
+                    ? "bg-emerald-500/10 border-emerald-500/40 text-emerald-400"
+                    : ""
                 }`}
               >
                 Expenses
@@ -78,18 +82,19 @@ export function Navbar() {
                 onClick={async () => {
                   await handleLogout();
                 }}
-                className='ml-2 rounded-lg px-4 py-2 text-sm font-medium text-red-400 transition hover:bg-red-500/10 cursor-pointer'
+                className={`ml-3 rounded-3xl border border-white/60 px-4 py-2 text-white transition-all hover:-translate-y-1 hover:bg-red-700 cursor-pointer`}
               >
                 Logout
               </button>
             </div>
           ) : (
-            <div className='md:hidden flex flex-col bg-neutral-950 border-t border-white/10'>
-              {" "}
+            <div className='hidden md:flex flex-row'>
               <Link
                 to='/register'
-                className={`ml-3 rounded-3xl border border-white/60 px-4 py-2 text-white transition-all hover:-tranneutral-y-1  hover:bg-white hover:text-gray-900 ${
-                  isRegisterPage ? "bg-gray-600" : ""
+                className={`ml-3 rounded-3xl border border-white/60 px-4 py-2 text-white transition-all hover:-translate-y-1  hover:bg-white hover:text-gray-900 ${
+                  isRegisterPage
+                    ? "bg-emerald-500/10 border-emerald-500/40 text-emerald-400"
+                    : ""
                 }`}
               >
                 Join
@@ -116,12 +121,13 @@ export function Navbar() {
             </svg>
           </button>
         </div>
+
         {isOpen && (
           <div className='md:hidden flex flex-col bg-black/80 backdrop-blur-xl border-t border-white/20'>
             <Link
               to='/register'
               className={`text-white px-4 py-3 text-left hover:bg-white/10 cursor-pointer ${
-                isAuthPage ? "bg-gray-600" : ""
+                isAuthPage ? "bg-emerald-500/10 text-emerald-400" : ""
               }`}
             >
               Join
@@ -129,7 +135,7 @@ export function Navbar() {
             <Link
               to='/profile'
               className={`text-white px-4 py-3 text-left hover:bg-white/10 cursor-pointer ${
-                isProilePage ? "bg-gray-600" : ""
+                isProilePage ? "bg-emerald-500/10 text-emerald-400" : ""
               }`}
             >
               profile
@@ -137,7 +143,7 @@ export function Navbar() {
             <Link
               to='/expenses'
               className={`text-white px-4 py-3 text-left hover:bg-white/10 cursor-pointer ${
-                isExpensesPage ? "bg-gray-600" : ""
+                isExpensesPage ? "bg-emerald-500/10 text-emerald-400" : ""
               }`}
             >
               Expenses
