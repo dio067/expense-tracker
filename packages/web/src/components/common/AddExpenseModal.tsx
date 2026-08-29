@@ -41,23 +41,25 @@ export function AddExpenseModal({
   if (!isOpen) return null;
 
   return (
-    <div className='fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4'>
-      <div className='flex flex-col items-center justify-center bg-black/80 p-4 md:p-6 rounded-xl border border-white/20 w-full max-w-sm md:max-w-md max-h-[90vh] overflow-y-auto'>
-        <div className='flex flex-col mb-2 w-full'>
-          <label className='text-gray-300 text-xl md:text-2xl m-2'>
+    <div className='fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4'>
+      <div className='flex flex-col bg-slate-900 p-6 rounded-lg border border-slate-800 w-full max-w-sm md:max-w-md max-h-[90vh] overflow-y-auto'>
+        <h2 className='text-white text-lg font-semibold mb-4'>Add expense</h2>
+
+        <div className='flex flex-col gap-1.5 mb-4'>
+          <label className='text-neutral-300 text-sm font-medium'>
             Category
           </label>
           <div className='relative'>
             <TextAlignStart
-              className='absolute top-2/5 left-4 md:left-7 text-gray-400'
-              size={18}
+              className='absolute top-1/2 -translate-y-1/2 left-3 text-neutral-500'
+              size={16}
             />
             <select
               onChange={(e) => {
                 setCategory(e.target.value);
               }}
               value={category}
-              className='bg-black/60 w-full md:w-96 rounded-xl text-sm md:text-base m-2 md:m-4 text-white border border-white/20 p-2 px-4 pl-10 focus:outline-none appearance-none'
+              className='bg-slate-800 w-full rounded-md text-sm text-neutral-100 border border-slate-700 py-2 pl-9 pr-3 focus:outline-none focus:border-neutral-400 appearance-none'
             >
               <option value='Food'>Food</option>
               <option value='Transport'>Transport</option>
@@ -68,33 +70,33 @@ export function AddExpenseModal({
             </select>
           </div>
         </div>
-        <div className='flex flex-col mx-2 md:mx-4 mb-2 w-full'>
-          <label className='text-gray-300 text-xl md:text-2xl m-2'>
+
+        <div className='flex flex-col gap-1.5 mb-4'>
+          <label className='text-neutral-300 text-sm font-medium'>
             Description
           </label>
           <div className='relative'>
             <ChartColumnStacked
-              className='absolute top-2/5 left-4 md:left-7 text-gray-400'
-              size={18}
+              className='absolute top-1/2 -translate-y-1/2 left-3 text-neutral-500'
+              size={16}
             />
             <input
               onChange={(e) => {
                 setDescription(e.target.value);
               }}
               value={description}
-              className='bg-black/60 w-full md:w-96 rounded-xl text-sm md:text-base m-2 md:m-4 text-white border border-white/20 p-2 px-4 pl-10 focus:outline-none placeholder:text-sm md:placeholder:text-base'
+              className='bg-slate-800 w-full rounded-md text-sm text-neutral-100 border border-slate-700 py-2 pl-9 pr-3 focus:outline-none focus:border-neutral-400 placeholder:text-neutral-600'
               placeholder='Describe your expense'
             ></input>
           </div>
         </div>
-        <div className='flex flex-col mb-2 w-full'>
-          <label className='text-gray-300 text-xl md:text-2xl m-2'>
-            Amount
-          </label>
+
+        <div className='flex flex-col gap-1.5 mb-2'>
+          <label className='text-neutral-300 text-sm font-medium'>Amount</label>
           <div className='relative'>
             <DollarSign
-              className='absolute top-2/5 left-4 md:left-7 text-gray-400'
-              size={18}
+              className='absolute top-1/2 -translate-y-1/2 left-3 text-neutral-500'
+              size={16}
             />
             <input
               onChange={(e) => {
@@ -102,29 +104,33 @@ export function AddExpenseModal({
                 setAmount(raw === "" ? null : Number(raw));
               }}
               type='number'
-              className='bg-black/60 w-full md:w-96 rounded-xl text-sm md:text-base m-2 md:m-4 text-white border border-white/20 p-2 px-4 pl-10 focus:outline-none placeholder:text-sm md:placeholder:text-base font-mono placeholder:font-pixelify'
-              placeholder='Price'
+              className='bg-slate-800 w-full rounded-md text-sm text-neutral-100 border border-slate-700 py-2 pl-9 pr-3 focus:outline-none focus:border-neutral-400 font-mono placeholder:text-neutral-600 placeholder:font-sans'
+              placeholder='0.00'
             ></input>
           </div>
         </div>
-        <div className='flex justify-center md:justify-end w-full mt-4'>
+
+        <div className='flex justify-end gap-2 mt-4'>
           <button
             onClick={() => {
               onClose();
               setError("");
             }}
-            className='text-white hover:text-black bg-transparent hover:bg-white backdrop-blur-2xl px-5 py-2 transition-all cursor-pointer'
+            className='text-neutral-300 text-sm font-medium px-4 py-2 rounded-md hover:bg-slate-800 transition cursor-pointer'
           >
             Cancel
           </button>
           <button
             onClick={handleAddtion}
-            className='text-white ml-4 hover:text-black bg-transparent hover:bg-white border border-white/20 backdrop-blur-2xl px-5 py-2 transition-all cursor-pointer'
+            className='bg-white text-black text-sm font-medium px-4 py-2 rounded-md hover:bg-neutral-200 transition cursor-pointer'
           >
-            +Add
+            Add expense
           </button>
         </div>
-        <h2 className='m-2 text-red-300 text-center'>{error}</h2>
+
+        {error && (
+          <p className='mt-3 text-red-400 text-sm text-center'>{error}</p>
+        )}
       </div>
     </div>
   );
