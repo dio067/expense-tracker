@@ -21,6 +21,7 @@ export function Signup() {
           mouseRadius={0.35}
         />
       </div>
+      <div className='absolute inset-0 bg-slate-900/40'></div>
       <RegisterForm />
     </main>
   );

@@ -43,7 +43,7 @@ export function RegisterForm() {
 
   return (
     <div className='relative z-10 py-4 mt-24 w-full max-w-md px-4'>
-      <div className='p-5 md:p-6 bg-transparent backdrop-blur-md rounded-3xl border border-slate-700 shadow-xs'>
+      <div className='p-5 md:p-8 bg-slate-900 rounded-2xl border border-slate-800 shadow-xl'>
         <div className='mb-4 flex justify-center'>
           <a href='#'>
             <img
@@ -55,11 +55,11 @@ export function RegisterForm() {
         </div>
 
         <div className='text-center'>
-          <h1 className='text-slate-300 text-xl md:text-2xl font-semibold mb-2'>
-            Create your Account!
+          <h1 className='text-white text-2xl md:text-3xl font-semibold mb-2'>
+            Welcome back
           </h1>
           <p className='text-slate-400 text-sm md:text-base'>
-            Enter your details to sign up.
+            Enter your email and password to sign in.
           </p>
         </div>
 
@@ -79,7 +79,7 @@ export function RegisterForm() {
               }}
               placeholder='Name'
               required
-              className='px-3 py-3 text-sm md:text-base text-slate-100 rounded-md bg-transparent backdrop-blur-lg w-full outline-1 outline-slate-700 transition-all'
+              className='px-3 py-2.5 text-sm md:text-base text-white rounded-lg bg-slate-800 border border-slate-700 w-full focus:outline-none focus:ring-2 focus:ring-white/30 transition'
             />
           </div>
           <div>
@@ -97,7 +97,7 @@ export function RegisterForm() {
               }}
               placeholder='arthur.morgan@example.com'
               required
-              className='px-3 py-3 text-sm md:text-base text-slate-100 rounded-md bg-transparent backdrop-blur-lg w-full outline-1 outline-slate-700 transition-all'
+              className='px-3 py-2.5 text-sm md:text-base text-white rounded-lg bg-slate-800 border border-slate-700 w-full focus:outline-none focus:ring-2 focus:ring-white/30 transition'
             />
           </div>
           <div>
@@ -115,7 +115,7 @@ export function RegisterForm() {
               }}
               placeholder='••••••••'
               required
-              className='px-3 py-3 text-sm text-slate-100 rounded-md bg-transparent backdrop-blur-lg w-full outline-1 outline-slate-700 transition-all'
+              className='px-3 py-2.5 text-sm md:text-base text-white rounded-lg bg-slate-800 border border-slate-700 w-full focus:outline-none focus:ring-2 focus:ring-white/30 transition'
             />
           </div>
           <div>
@@ -133,15 +133,15 @@ export function RegisterForm() {
               }}
               placeholder='••••••••'
               required
-              className='px-3 py-3 text-sm text-slate-100 rounded-md bg-transparent backdrop-blur-lg w-full outline-1 outline-slate-700 transition-all'
+              className='px-3 py-2.5 text-sm md:text-base text-white rounded-lg bg-slate-800 border border-slate-700 w-full focus:outline-none focus:ring-2 focus:ring-white/30 transition'
             />
           </div>
           <button
             onClick={handleRegisterForm}
-            className='py-3 mt-4 w-full text-slate-900 bg-slate-200 rounded-2xl border border-blue-200 hover:bg-gray-500 hover:-translate-y-1 transition-all font-semibold cursor-pointer'
+            className='py-3 mt-2 w-full text-center text-black bg-white rounded-lg hover:bg-gray-200 transition-all font-semibold cursor-pointer'
           >
             {!isLoading ? (
-              <div>Sign in</div>
+              <div>Sign up</div>
             ) : (
               <div className='text-center'>
                 <SpinnerBasic />
@@ -158,7 +158,10 @@ export function RegisterForm() {
 
           <button className='text-white text-sm w-full'>
             Already have an account?{"  "}
-            <Link to='/login' className='text-slate-400 cursor-pointer ml-1'>
+            <Link
+              to='/login'
+              className='text-white font-medium cursor-pointer ml-1 hover:underline'
+            >
               Sign in
             </Link>
           </button>
