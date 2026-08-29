@@ -10,6 +10,13 @@ import {
 import * as bcrypt from "bcrypt";
 import * as jwt from "jsonwebtoken";
 
+const cookieOptions = (maxAgeMs: number) => ({
+  httpOnly: true,
+  secure: node_env === "production",
+  sameSite: (node_env === "production" ? "none" : "lax") as "none" | "lax",
+  maxAge: maxAgeMs,
+});
+
 const authController = {
   login: async (req: Request, res: Response) => {
     const { email, password } = req.body;
@@ -45,19 +52,17 @@ const authController = {
         data: { refreshToken },
       });
 
-      res.cookie("accessToken", accessToken, {
-        httpOnly: true,
-        secure: node_env === "production",
-        maxAge: 24 * 60 * 60 * 1000,
-        sameSite: "none",
-      });
+      res.cookie(
+        "accessToken",
+        accessToken,
+        cookieOptions(24 * 60 * 60 * 1000),
+      );
 
-      res.cookie("refreshToken", refreshToken, {
-        httpOnly: true,
-        secure: node_env === "production",
-        maxAge: 60 * 60 * 24 * 7 * 1000,
-        sameSite: "none",
-      });
+      res.cookie(
+        "refreshToken",
+        refreshToken,
+        cookieOptions(60 * 60 * 24 * 7 * 1000),
+      );
 
       return res.status(200).json({
         ok: true,
@@ -112,19 +117,18 @@ const authController = {
         data: { refreshToken },
       });
 
-      res.cookie("accessToken", accessToken, {
-        httpOnly: true,
-        secure: node_env === "production",
-        maxAge: 24 * 60 * 60 * 1000,
-        sameSite: "none",
-      });
+      res.cookie(
+        "accessToken",
+        accessToken,
+        cookieOptions(24 * 60 * 60 * 1000),
+      );
 
-      res.cookie("refreshToken", refreshToken, {
-        httpOnly: true,
-        secure: node_env === "production",
-        maxAge: 60 * 60 * 24 * 7 * 1000,
-        sameSite: "none",
-      });
+      res.cookie(
+        "refreshToken",
+        refreshToken,
+        cookieOptions(60 * 60 * 24 * 7 * 1000),
+      );
+
       return res.status(200).json({
         ok: true,
         message: "Successfully Registered",
@@ -199,12 +203,12 @@ const authController = {
         expiresIn: secret_expires_in as any,
       });
 
-      res.cookie("accessToken", newAccessToken, {
-        httpOnly: true,
-        secure: node_env === "production",
-        maxAge: 15 * 60 * 1000,
-        sameSite: "none",
-      });
+      res.cookie(
+        "accessToken",
+        newAccessToken,
+        cookieOptions(24 * 60 * 60 * 1000),
+      );
+
       const newRefreshToken = jwt.sign({ userId: user.id }, refresh, {
         expiresIn: refresh_expires_in as any,
       });
@@ -214,12 +218,11 @@ const authController = {
         data: { refreshToken: newRefreshToken },
       });
 
-      res.cookie("refreshToken", newRefreshToken, {
-        httpOnly: true,
-        secure: node_env === "production",
-        maxAge: 60 * 60 * 24 * 7 * 1000,
-        sameSite: node_env === "production" ? "none" : "lax",
-      });
+      res.cookie(
+        "refreshToken",
+        newRefreshToken,
+        cookieOptions(60 * 60 * 24 * 7 * 1000),
+      );
 
       return res.status(200).json({
         ok: true,
