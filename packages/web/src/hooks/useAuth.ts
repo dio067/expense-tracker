@@ -3,18 +3,12 @@ import { useAuthStore } from "@/store/auth.store";
 import type { AlterUserPayload } from "@/types";
 
 export const useAuth = () => {
-  const { user, setUser, setIsLoading, setError, signout, isAuthenticated } =
-    useAuthStore();
+  const { user, setUser, setIsLoading, setError, signout } = useAuthStore();
   const checkAuth = async () => {
     setIsLoading(true);
     try {
       const res = await authMe();
-      if (res.ok && res.data) {
-        setUser(res.data);
-        return isAuthenticated;
-      } else {
-        setUser(null);
-      }
+      setUser(res.ok && res.data ? res.data : null);
     } catch (error) {
       setUser(null);
       console.error(error);
