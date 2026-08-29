@@ -42,7 +42,7 @@ export function AddExpenseModal({
 
   return (
     <div className='fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4'>
-      <div className='flex flex-col bg-slate-900 p-6 rounded-lg border border-slate-800 w-full max-w-sm md:max-w-md max-h-[90vh] overflow-y-auto'>
+      <div className='flex flex-col bg-neutral-900 p-6 rounded-lg border border-neutral-800 w-full max-w-sm md:max-w-md max-h-[90vh] overflow-y-auto'>
         <h2 className='text-white text-lg font-semibold mb-4'>Add expense</h2>
 
         <div className='flex flex-col gap-1.5 mb-4'>
@@ -51,7 +51,7 @@ export function AddExpenseModal({
           </label>
           <div className='relative'>
             <TextAlignStart
-              className='absolute top-1/2 -translate-y-1/2 left-3 text-neutral-500'
+              className='absolute top-1/2 -translate-y-1/2 left-3 text-neutral-500 pointer-events-none'
               size={16}
             />
             <select
@@ -59,7 +59,7 @@ export function AddExpenseModal({
                 setCategory(e.target.value);
               }}
               value={category}
-              className='bg-slate-800 w-full rounded-md text-sm text-neutral-100 border border-slate-700 py-2 pl-9 pr-3 focus:outline-none focus:border-neutral-400 appearance-none'
+              className='bg-neutral-950 w-full rounded-md text-sm text-neutral-100 border border-neutral-700 py-2 pl-9 pr-3 focus:outline-none focus:border-emerald-500 appearance-none'
             >
               <option value='Food'>Food</option>
               <option value='Transport'>Transport</option>
@@ -77,7 +77,7 @@ export function AddExpenseModal({
           </label>
           <div className='relative'>
             <ChartColumnStacked
-              className='absolute top-1/2 -translate-y-1/2 left-3 text-neutral-500'
+              className='absolute top-1/2 -translate-y-1/2 left-3 text-neutral-500 pointer-events-none'
               size={16}
             />
             <input
@@ -85,7 +85,7 @@ export function AddExpenseModal({
                 setDescription(e.target.value);
               }}
               value={description}
-              className='bg-slate-800 w-full rounded-md text-sm text-neutral-100 border border-slate-700 py-2 pl-9 pr-3 focus:outline-none focus:border-neutral-400 placeholder:text-neutral-600'
+              className='bg-neutral-950 w-full rounded-md text-sm text-neutral-100 border border-neutral-700 py-2 pl-9 pr-3 focus:outline-none focus:border-emerald-500 placeholder:text-neutral-600'
               placeholder='Describe your expense'
             ></input>
           </div>
@@ -95,7 +95,7 @@ export function AddExpenseModal({
           <label className='text-neutral-300 text-sm font-medium'>Amount</label>
           <div className='relative'>
             <DollarSign
-              className='absolute top-1/2 -translate-y-1/2 left-3 text-neutral-500'
+              className='absolute top-1/2 -translate-y-1/2 left-3 text-neutral-500 pointer-events-none'
               size={16}
             />
             <input
@@ -104,7 +104,7 @@ export function AddExpenseModal({
                 setAmount(raw === "" ? null : Number(raw));
               }}
               type='number'
-              className='bg-slate-800 w-full rounded-md text-sm text-neutral-100 border border-slate-700 py-2 pl-9 pr-3 focus:outline-none focus:border-neutral-400 font-mono placeholder:text-neutral-600 placeholder:font-sans'
+              className='bg-neutral-950 w-full rounded-md text-sm text-neutral-100 border border-neutral-700 py-2 pl-9 pr-3 focus:outline-none focus:border-emerald-500 font-mono placeholder:text-neutral-600 placeholder:font-sans'
               placeholder='0.00'
             ></input>
           </div>
@@ -116,13 +116,13 @@ export function AddExpenseModal({
               onClose();
               setError("");
             }}
-            className='text-neutral-300 text-sm font-medium px-4 py-2 rounded-md hover:bg-slate-800 transition cursor-pointer'
+            className='text-neutral-300 text-sm font-medium px-4 py-2 rounded-md hover:bg-neutral-800 transition cursor-pointer'
           >
             Cancel
           </button>
           <button
             onClick={handleAddtion}
-            className='bg-white text-black text-sm font-medium px-4 py-2 rounded-md hover:bg-neutral-200 transition cursor-pointer'
+            className='bg-white hover:bg-white/70 text-black text-sm font-medium px-4 py-2 rounded-md transition cursor-pointer'
           >
             Add expense
           </button>
