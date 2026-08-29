@@ -1,5 +1,6 @@
 import { Response, Request } from "express";
 import prisma from "../lib/prisma";
+import { toPublicUser } from "@/lib";
 
 const userController = {
   getUser: async (req: Request, res: Response) => {
@@ -19,7 +20,7 @@ const userController = {
       }
       return res.status(200).json({
         ok: true,
-        data: user,
+        data: toPublicUser(user),
         message: "User data fetched successfully",
       });
     } catch (err) {
@@ -48,7 +49,7 @@ const userController = {
       });
       return res.status(200).json({
         ok: true,
-        data: user,
+        data: toPublicUser(user),
         message: "User data altered successfully",
       });
     } catch (err) {

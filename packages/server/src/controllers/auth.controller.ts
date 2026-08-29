@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import prisma from "../lib/prisma";
+import { toPublicUser, prisma } from "../lib";
 import {
   refresh,
   refresh_expires_in,
@@ -62,7 +62,7 @@ const authController = {
       return res.status(200).json({
         ok: true,
         message: "Successfully Logged In",
-        data: user,
+        data: toPublicUser(user),
       });
     } catch (err) {
       console.error("Login Failed", err);
@@ -128,11 +128,7 @@ const authController = {
       return res.status(200).json({
         ok: true,
         message: "Successfully Registered",
-        data: {
-          id: newUser.id,
-          name: newUser.name,
-          email: newUser.email,
-        },
+        data: toPublicUser(newUser),
       });
     } catch (err) {
       console.error("Register Failed", err);
