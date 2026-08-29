@@ -3,7 +3,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { MoltenMetal } from "@/components";
 import BarChart from "@/components/common/BarChart";
 import { useExpenses } from "@/hooks/useExpenses";
-import { AddExpenseModel } from "@/components/common/AddExpenseModal";
+import { AddExpenseModal } from "@/components";
 import { useExpenseStore } from "@/store/expense.store";
 
 export function Home() {
@@ -97,7 +97,7 @@ export function Home() {
             + Add Expenses
           </button>
         </div>
-        <AddExpenseModel
+        <AddExpenseModal
           isOpen={modelOpen}
           onClose={() => {
             setModelOpen(false);

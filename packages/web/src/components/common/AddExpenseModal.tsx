@@ -11,7 +11,7 @@ type AddExpenseModalProps = {
   }) => void;
 };
 
-export function AddExpenseModel({
+export function AddExpenseModal({
   isOpen,
   onClose,
   onSubmit,
