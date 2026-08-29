@@ -37,13 +37,17 @@ export function Expenses() {
           key={i}
           className='border border-white/10 rounded-lg p-4 space-y-2'
         >
-          <div className='h-4 w-2/3 rounded bg-gradient-to-r from-black via-gray-700 to-black bg-[length:200%_100%] animate-pulse' />
-          <div className='h-4 w-1/2 rounded bg-gradient-to-r from-black via-gray-700 to-black bg-[length:200%_100%] animate-pulse' />
-          <div className='h-4 w-1/3 rounded bg-gradient-to-r from-black via-gray-700 to-black bg-[length:200%_100%] animate-pulse' />
+          <div className='h-4 w-full rounded bg-slate-800 animate-pulse' />
+          <div className='h-4 w-full rounded bg-slate-800 animate-pulse' />
+          <div className='h-4 w-full rounded bg-slate-800 animate-pulse' />
         </div>
       ))
     : expenses.map((expense) => (
-        <div key={expense.id} className='border border-white/10 rounded-lg p-4'>
+        <div
+          key={expense.id}
+          className='bg-slate-900 border border-slate-800 rounded-lg p-4'
+        >
+          {" "}
           <div className='flex justify-between items-start'>
             <div>
               <p className='text-gray-200 font-medium'>{expense.category}</p>
@@ -71,40 +75,45 @@ export function Expenses() {
     ? Array.from({ length: 9 }).map((_, i) => (
         <tr key={i} className='border border-white/10'>
           <td className='py-3 px-4 border border-white/10'>
-            <div className='h-4 w-full rounded bg-gradient-to-r from-black via-gray-700 to-black bg-[length:200%_100%] animate-pulse' />
+            <div className='h-4 w-full rounded bg-slate-800 animate-pulse' />{" "}
           </td>
           <td className='py-3 px-4 border border-white/10'>
-            <div className='h-4 w-full rounded bg-gradient-to-r from-black via-gray-700 to-black bg-[length:200%_100%] animate-pulse' />
+            <div className='h-4 w-full rounded bg-slate-800 animate-pulse' />{" "}
           </td>
           <td className='py-3 px-4 border border-white/10'>
-            <div className='h-4 w-full rounded bg-gradient-to-r from-black via-gray-700 to-black bg-[length:200%_100%] animate-pulse' />
+            <div className='h-4 w-full rounded bg-slate-800 animate-pulse' />{" "}
           </td>
           <td className='py-3 px-4 border border-white/10'>
-            <div className='h-4 w-full rounded bg-gradient-to-r from-black via-gray-700 to-black bg-[length:200%_100%] animate-pulse' />
+            <div className='h-4 w-full rounded bg-slate-800 animate-pulse' />{" "}
           </td>
           <td className='py-3 px-4 border border-white/10'></td>
         </tr>
       ))
     : expenses.map((expense) => (
-        <tr key={expense.id} className='border border-white/10'>
-          <td className='py-3 px-4 text-gray-200 border font-mono border-white/10'>
+        <tr
+          key={expense.id}
+          className='border-b border-slate-800 hover:bg-white/5 transition'
+        >
+          <td className='py-3 px-4 text-slate-300 font-mono text-sm'>
             {new Date(expense.createdAt).toLocaleDateString()}
           </td>
-          <td className='py-3 px-4 text-gray-200 border border-white/10'>
-            {expense.category}
+          <td className='py-3 px-4'>
+            <span className='inline-block px-2 py-1 rounded-md bg-slate-800 text-slate-200 text-xs font-medium'>
+              {expense.category}
+            </span>
           </td>
-          <td className='py-3 px-4 text-gray-200 border border-white/10'>
+          <td className='py-3 px-4 text-slate-300 text-sm'>
             {expense.description}
           </td>
-          <td className='py-3 px-4 text-left font-mono text-red-400 border border-white/10'>
-            - {expense.amount}
+          <td className='py-3 px-4 text-left font-mono text-red-400'>
+            -{expense.amount}
           </td>
-          <td className='flex py-3 px-4 text-gray-200 border border-white/10 justify-center items-center'>
+          <td className='py-3 px-4 text-slate-300'>
             <button
               onClick={() => openAlter(expense)}
-              className='backdrop-blur cursor-pointer hover:text-gray-500'
+              className='hover:text-white cursor-pointer'
             >
-              <EllipsisVertical />
+              <EllipsisVertical size={18} />
             </button>
           </td>
         </tr>
@@ -133,13 +142,16 @@ export function Expenses() {
           mouseStrength={0.3}
           opacity={1}
         />
+        <div className='absolute inset-0 bg-slate-900/40'></div>
       </div>
       <div className='mt-16 md:mt-20 relative z-10'>
         <div className='flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center'>
-          <h1 className='text-white text-2xl md:text-3xl'>All Expenses</h1>
+          <h1 className='text-white text-xl md:text-2xl font-semibold'>
+            All Expenses
+          </h1>
           <button
             onClick={() => setModelOpen(true)}
-            className='bg-transparent backdrop-blur-md text-white px-4 py-2 border border-white/20 rounded-3xl hover:-translate-y-2 transition-all cursor-pointer hover:bg-white hover:text-black self-start sm:self-auto'
+            className='bg-white text-black px-4 py-2 rounded-lg font-medium text-sm hover:bg-gray-200 transition self-start sm:self-auto'
           >
             + Add Expense
           </button>
@@ -161,22 +173,22 @@ export function Expenses() {
         <div className='md:hidden mt-5 space-y-3'>{renderedCards}</div>
 
         <div className='hidden md:block mt-5'>
-          <table className='w-full text-left border-collapse border-white/20'>
+          <table className='w-full text-left border-collapse'>
             <thead>
-              <tr className='border-b border-white/20'>
-                <th className='py-3 px-4 text-sm font-medium text-gray-400 border border-white/20'>
+              <tr className='border-b border-slate-800'>
+                <th className='py-3 px-4 text-sm font-medium text-slate-400'>
                   Date
                 </th>
-                <th className='py-3 px-4 text-sm font-medium text-gray-400 border border-white/20'>
+                <th className='py-3 px-4 text-sm font-medium text-slate-400'>
                   Category
                 </th>
-                <th className='py-3 px-4 text-sm font-medium text-gray-400 border border-white/20'>
+                <th className='py-3 px-4 text-sm font-medium text-slate-400'>
                   Description
                 </th>
-                <th className='py-3 px-4 text-sm font-medium text-gray-400 border border-x-none border-white/20'>
+                <th className='py-3 px-4 text-sm font-medium text-slate-400'>
                   Amount
                 </th>
-                <th className='py-3 px-4 text-sm font-medium text-gray-400 border border-white/20'></th>
+                <th className='py-3 px-4 text-sm font-medium text-slate-400'></th>
               </tr>
             </thead>
             <tbody>{renderedRows}</tbody>
