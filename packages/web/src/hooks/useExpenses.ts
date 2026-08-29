@@ -1,5 +1,5 @@
 import { useExpenseStore } from "@/store/expense.store";
-import { expenseService } from "@/services/expenses.service";
+import { expenseService } from "@/services";
 import type { createExpensePayload, updateExpensePayload } from "@/types";
 
 export const useExpenses = () => {
