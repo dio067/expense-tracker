@@ -1,10 +1,22 @@
 import { Frown } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export function NotFound() {
   return (
-    <main className='flex flex-col items-center justify-center relative md:h-full min-h-screen bg-black px-4 md:px-8 '>
-      <Frown className='h-40 w-40 text-gray-400' />
-      <h1 className='m-4 text-4xl text-gray-400'>Page Not Found</h1>
+    <main className='flex flex-col items-center justify-center min-h-screen bg-slate-900/50 px-4'>
+      <Frown className='h-24 w-24 text-slate-500' />
+      <h1 className='mt-6 text-2xl md:text-3xl font-semibold text-white'>
+        Page not found
+      </h1>
+      <p className='mt-2 text-slate-400 text-sm md:text-base'>
+        The page you're looking for doesn't exist.
+      </p>
+      <Link
+        to='/'
+        className='mt-6 bg-white text-black px-5 py-2.5 rounded-lg font-medium text-sm hover:bg-gray-200 transition'
+      >
+        Back to home
+      </Link>
     </main>
   );
 }
