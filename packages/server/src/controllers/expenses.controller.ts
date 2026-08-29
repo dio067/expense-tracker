@@ -40,6 +40,12 @@ const expenseController = {
         where: { id: idParam, userId },
       });
 
+      if (!expense) {
+        return res
+          .status(404)
+          .json({ ok: false, message: "Expense not found", data: null });
+      }
+
       return res.status(200).json({
         ok: true,
         message: "Data fetched successfully",
