@@ -103,6 +103,7 @@ const authController = {
           email,
           password: hashedPassword,
           name,
+          age,
         },
       });
 
