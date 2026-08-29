@@ -82,19 +82,18 @@ export function Home() {
           mouseStrength={0.3}
           opacity={1}
         />
+        <div className='absolute inset-0 bg-slate-900/40'></div>
       </div>
       <div className='mt-16 md:mt-20 relative z-10'>
         <div className='flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-6'>
-          <h1 className='text-xl md:text-2xl font-semibold text-[#f5f5f5]'>
-            Welcome back, {user?.name ?? ""}...
+          <h1 className='text-xl md:text-2xl font-semibold text-white'>
+            Welcome back, {user?.name ?? ""}
           </h1>
           <button
-            onClick={() => {
-              setModelOpen(true);
-            }}
-            className='bg-transparent backdrop-blur-md text-white px-4 py-2 border border-white/20 rounded-3xl hover:-translate-y-2 transition-all cursor-pointer hover:bg-white hover:text-black self-start sm:self-auto'
+            onClick={() => setModelOpen(true)}
+            className='bg-white text-black px-4 py-2 rounded-lg font-medium text-sm hover:bg-gray-200 transition self-start sm:self-auto cursor-pointer'
           >
-            + Add Expenses
+            + Add Expense
           </button>
         </div>
         <AddExpenseModal
@@ -105,27 +104,27 @@ export function Home() {
           onSubmit={createExpense}
         />
         <div className='grid grid-cols-1 md:grid-cols-3 gap-4 mb-6'>
-          <div className='bg-transparent backdrop-blur-md rounded-xl p-4 md:p-5 border border-white/20 shadow-sm'>
-            <p className='text-sm text-gray-300'>Total income</p>
-            <p className='text-xl md:text-2xl font-mono font-bold text-gray-300 mt-1'>
-              {user?.income}$
+          <div className='bg-slate-900 rounded-lg p-4 md:p-5 border border-slate-800'>
+            <p className='text-sm text-slate-400'>Total income</p>
+            <p className='text-xl md:text-2xl font-semibold text-white mt-1'>
+              ${user?.income}
             </p>
           </div>
-          <div className='bg-transparent backdrop-blur-md rounded-xl p-4 md:p-5 border border-white/20 shadow-sm'>
-            <p className='text-sm text-gray-300'>Total Expenses</p>
-            <p className='text-xl md:text-2xl font-mono font-bold text-gray-300 mt-1'>
-              {TOTAL_EXPENSES}$
+          <div className='bg-slate-900 rounded-lg p-4 md:p-5 border border-slate-800'>
+            <p className='text-sm text-slate-400'>Total Expenses</p>
+            <p className='text-xl md:text-2xl font-semibold text-white mt-1'>
+              ${TOTAL_EXPENSES}
             </p>
           </div>
-          <div className='bg-transparent backdrop-blur-md border border-white/20 rounded-xl p-4 md:p-5 shadow-sm'>
-            <p className='text-sm text-gray-300'>Balance</p>
-            <p className='text-xl md:text-2xl font-mono font-bold text-gray-300 mt-1'>
-              {user?.balance}$
+          <div className='bg-slate-900 rounded-lg p-4 md:p-5 border border-slate-800'>
+            <p className='text-sm text-slate-400'>Balance</p>
+            <p className='text-xl md:text-2xl font-semibold text-white mt-1'>
+              ${user?.balance}
             </p>
           </div>
         </div>
-        <div className='bg-tansparent border backdrop-blur-md border-white/20 rounded-xl p-4 md:p-5 pb-0 shadow-sm mb-6'>
-          <h2 className='text-xl md:text-2xl font-semibold text-gray-300 mb-4'>
+        <div className='bg-slate-900 border border-slate-800 rounded-lg p-4 md:p-5 pb-0 mb-6'>
+          <h2 className='text-lg md:text-xl font-semibold text-white mb-4'>
             Spending Overview
           </h2>
           <div className='h-48 items-center justify-center text-gray-300'>
@@ -133,24 +132,23 @@ export function Home() {
           </div>
         </div>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
-          <div className='bg-transparent p-4 md:p-7 backdrop-blur-md border border-white/20 rounded-xl shadow-sm'>
-            <h2 className='text-xl md:text-2xl text-gray-300 mb-4 font-semibold'>
+          <div className='bg-slate-900 p-4 md:p-6 border border-slate-800 rounded-lg'>
+            <h2 className='text-lg md:text-xl text-white mb-4 font-semibold'>
               Recent Transactions
             </h2>
-
             <ul className='space-y-3'>
               {recentTransactions.map((tx) => (
                 <li
                   key={tx.id}
-                  className='flex justify-between text-base md:text-lg'
+                  className='flex justify-between text-sm md:text-base border-b border-slate-800 pb-2 last:border-0'
                 >
-                  <span className='text-gray-200'>{tx.category}</span>
-                  <span className='text-gray-200 font-mono'>{tx.amount}$</span>
+                  <span className='text-slate-300'>{tx.category}</span>
+                  <span className='text-white font-medium'>${tx.amount}</span>
                 </li>
               ))}
             </ul>
           </div>
-          <div className='bg-transparent backdrop-blur-md p-4 md:p-7 border border-white/20 rounded-xl shadow-sm'>
+          <div className='bg-slate-900 p-4 md:p-6 border border-slate-800 rounded-lg'>
             <h2 className='text-xl md:text-2xl text-gray-300 mb-4 font-semibold'>
               Spending by Category
             </h2>
