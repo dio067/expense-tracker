@@ -35,6 +35,20 @@ npm run dev
 Web: `http://localhost:5173`
 API: `http://localhost:3000`
 
+## Screenshots
+
+![landing](docs/screenshots/landing.png)
+
+![login](docs/screenshots/login.png)
+
+![signup](docs/screenshots/signup.png)
+
+![dashboard](docs/screenshots/dashboard.png)
+
+![expenses](docs/screenshots/expenses.png)
+
+![profile](docs/screenshots/profile.png)
+
 ## Environment
 
 Server:
