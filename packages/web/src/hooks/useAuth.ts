@@ -39,7 +39,10 @@ export const useAuth = () => {
 
     try {
       const res = await login(payload);
-      setUser({ id: res.id, name: res.name, email: res.email });
+      if (!res.ok || !res.data) {
+        throw new Error(res.message ?? "Login failed");
+      }
+      setUser(res.data);
     } catch (err: unknown) {
       const apiError = err as {
         response?: { data?: { error?: string } };
@@ -68,7 +71,10 @@ export const useAuth = () => {
 
     try {
       const res = await register(payload);
-      setUser({ id: res.id, name: res.name, email: res.email });
+      if (!res.ok || !res.data) {
+        throw new Error(res.message ?? "Login failed");
+      }
+      setUser(res.data);
     } catch (err: unknown) {
       const apiError = err as {
         response?: { data?: { error?: string } };

@@ -1,11 +1,6 @@
 import type { User, AlterUserPayload } from "@/types";
 import api from "./api";
 
-type AuthResponse = {
-  id: number;
-  name: string;
-  email: string;
-};
 type AuthorizedResponse = {
   ok: boolean;
   message: string;
@@ -26,7 +21,7 @@ const AuthService = {
     email: string;
     password: string;
   }) => {
-    const res = await api.post<AuthResponse>("/auth/register", payload);
+    const res = await api.post("/auth/register", payload);
     return res.data;
   },
   login: async (payload: { email: string; password: string }) => {
