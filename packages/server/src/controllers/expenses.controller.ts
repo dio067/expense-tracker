@@ -51,12 +51,6 @@ const expenseController = {
     const userId = (req as any).userId;
     const { amount, description, category } = req.body;
 
-    if (!amount || !description || !category)
-      return res.status(400).json({
-        ok: false,
-        message: "All fields are mandatory",
-        data: null,
-      });
     try {
       const expense = await prisma.expenses.create({
         data: {
